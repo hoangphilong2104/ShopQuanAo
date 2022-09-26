@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>San Pham</title>
+</head>
+<body>
+<div align="center">
+	<a href="#">Add San Pham</a>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>MaSP</th>
+				<th>TenSP</th>
+				<th>MoTa</th>
+				<th>GioiTinh</th>
+				<th>GiaBan</th>
+				<th>GiaNhap</th>
+				<th>Anh</th>
+				<th>Slug</th>
+				<th>MaLoaiSP</th>
+				<th>MaNCC</th>
+				<th>SoLuongTon</th>
+				<th>TrangThai</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${listItems}">
+				<td th:text="${item.MaSP}"></td>
+				<td th:text="${item.TenSP}"></td>
+				<td th:text="${item.MoTa}"></td>
+				<td th:text="${item.GioiTinh}"></td>
+				<td th:text="${item.GiaBan}"></td>
+				<td th:text="${item.GiaNhap}"></td>
+				<td th:text="${item.Anh}"></td>
+				<td th:text="${item.Slug}"></td>
+				<td th:text="${item.MaLoaiSP}"></td>
+				<td th:text="${item.MaNCC}"></td>
+				<td th:text="${item.SoLuongTon}"></td>
+				<td th:text="${item.TrangThai}"></td>
+				<td>
+					<a href= "#">Edit</a>
+					<a href= "#">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>	
+</body>
+</html>

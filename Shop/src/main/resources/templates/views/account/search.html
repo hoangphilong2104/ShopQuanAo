@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Account</title>
+</head>
+<body>
+<div align="center">
+	<a href="/admin/account/add">Add Account</a>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>id_account</th>
+				<th>username</th>
+				<th>password</th>
+				<th>role</th>
+				<th>create_date</th>
+				<th>last_login</th>
+				<th>auth_provider</th>
+				<th>verification_code</th>
+				<th>action</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="account: ${listAccounts}">
+				<td th:text="${account.id_account}"></td>
+				<td th:text="${account.username}"></td>
+				<td th:text="${account.password}"></td>
+				<td th:text="${account.role}"></td>
+				<td th:text="${account.create_date}"></td>
+				<td th:text="${account.last_login}"></td>
+				<td th:text="${account.auth_provider}"></td>
+				<td th:text="${account.verification_code}"></td>
+				<td>
+					<a th:href= "@{'edit/' + ${account.id_account}}">Edit</a>
+					<a th:href= "@{'delete/' + ${account.id_account}}">Delete</a>
+				</td>
+			</tr>
+			</tr>
+		</tbody>
+	</table>
+	<h1>
+		<tr th:text="${NotFound}"></tr>
+	</h1>
+	<a href="/admin/account">Back</a>
+</div>	
+</body>
+</html>
