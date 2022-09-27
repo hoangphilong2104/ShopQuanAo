@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hoa Don</title>
+</head>
+<body>
+<div align="center">
+	<a href="/admin/hoadon/add">Add Hoa Don</a>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>MaHD</th>
+				<th>NgayDat</th>
+				<th>NgayGiao</th>
+				<th>TinhTrang</th>
+				<th>MaKH</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${listItems}">
+				<td th:text="${item.MaHD}"></td>
+				<td th:text="${item.NgayDat}"></td>
+				<td th:text="${item.NgayGiao}"></td>
+				<td th:text="${item.TinhTrang}"></td>
+				<td th:text="${item.MaKH}"></td>
+				<td>
+					<a th:href= "@{'/admin/hoadon/edit/'+${item.MaHD}}">Edit</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>	
+</body>
+</html>

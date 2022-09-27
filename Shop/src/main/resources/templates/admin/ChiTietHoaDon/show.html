@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Chi Tiet Hoa Don</title>
+</head>
+<body>
+<div align="center">
+	<a href="/admin/chitiethoadon/add">Add Chi Tiet Hoa Don</a>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>MaHD</th>
+				<th>MaSP</th>
+				<th>SoLuong</th>
+				<th>DonGia</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${listItems}">
+				<td th:text="${item.MaHD}"></td>
+				<td th:text="${item.MaSP}"></td>
+				<td th:text="${item.SoLuong}"></td>
+				<td th:text="${item.DonGia}"></td>
+				<td>
+					<a th:href= "@{'/admin/chitiethoadon/edit/'+${item.MaHD}}">Edit</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>	
+</body>
+</html>

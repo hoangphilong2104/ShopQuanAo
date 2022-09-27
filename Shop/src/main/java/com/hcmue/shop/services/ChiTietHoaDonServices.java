@@ -39,20 +39,25 @@ public class ChiTietHoaDonServices implements Services<ChiTietHoaDonModel>{
 
 	@Override
 	public ChiTietHoaDonModel findOne(int id) {
-		// TODO Auto-generated method stub
+		ChiTietHoaDon s = repo.getById(id);
+		if(s != null) {
+			ChiTietHoaDonModel chiTietHoaDonModel = new ChiTietHoaDonModel(s);
+			return chiTietHoaDonModel;
+		}
 		return null;
 	}
 
 	@Override
 	public void save(ChiTietHoaDonModel t) {
-		// TODO Auto-generated method stub
-		
+		if(t != null) {
+			ChiTietHoaDon s = new ChiTietHoaDon(t);
+			repo.save(s);
+		}
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		//Not have delete
 	}
  
 }

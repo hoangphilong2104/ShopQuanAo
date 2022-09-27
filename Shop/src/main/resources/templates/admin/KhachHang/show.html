@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Khach Hang</title>
+</head>
+<body>
+<div align="center">
+	<a href="/admin/khachhang/add">Add Khach Hang</a>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>MaKH</th>
+				<th>TenKH</th>
+				<th>NgaySinh</th>
+				<th>GioiTinh</th>
+				<th>TaiKhoan</th>
+				<th>MatKhau</th>
+				<th>DiaChi</th>
+				<th>Email</th>
+				<th>SDT</th>
+				<th>TrangThai</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${listItems}">
+				<td th:text="${item.MaKH}"></td>
+				<td th:text="${item.TenKH}"></td>
+				<td th:text="${item.NgaySinh}"></td>
+				<td th:text="${item.GioiTinh}"></td>
+				<td th:text="${item.TaiKhoan}"></td>
+				<td th:text = "'***'" align="center" ></td>
+				<td th:text="${item.DiaChi}"></td>
+				<td th:text="${item.Email}"></td>
+				<td th:text="${item.SDT}"></td>
+				<td th:text="${item.TrangThai}"></td>
+				<td>
+					<a th:href= "@{'/admin/khachhang/edit/'+${item.MaKH}}">Edit</a>
+					<a th:href= "@{'/admin/khachhang/delete/'+${item.MaKH}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>	
+</body>
+</html>

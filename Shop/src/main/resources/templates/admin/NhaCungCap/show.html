@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Nha Cung Cap</title>
+</head>
+<body>
+<div align="center">
+	<a href="/admin/nhacungcap/add">Add Nha Cung Cap</a>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>MaNCC</th>
+				<th>TenNCC</th>
+				<th>DiaChi</th>
+				<th>SDT</th>
+				<th>TrangThai</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${listItems}">
+				<td th:text="${item.MaNCC}"></td>
+				<td th:text="${item.TenNCC}"></td>
+				<td th:text="${item.DiaChi}"></td>
+				<td th:text="${item.SDT}"></td>
+				<td th:text="${item.TrangThai}"></td>
+				<td>
+					<a th:href= "@{'/admin/nhacungcap/edit/'+${item.MaNCC}}">Edit</a>
+					<a th:href= "@{'/admin/nhacungcap/delete/'+${item.MaNCC}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>	
+</body>
+</html>

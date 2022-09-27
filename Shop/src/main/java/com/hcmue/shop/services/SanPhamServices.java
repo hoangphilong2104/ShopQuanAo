@@ -39,20 +39,27 @@ public class SanPhamServices implements Services<SanPhamModel>{
 
 	@Override
 	public SanPhamModel findOne(int id) {
-		// TODO Auto-generated method stub
+		SanPham s = repo.getById(id);
+		if(s != null) {
+			SanPhamModel sanPhamModel = new SanPhamModel(s);
+			return sanPhamModel;
+		}
 		return null;
 	}
 
 	@Override
 	public void save(SanPhamModel t) {
-		// TODO Auto-generated method stub
-		
+		if(t != null) {
+			SanPham s = new SanPham(t);
+			repo.save(s);
+		}
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		SanPhamModel s = findOne(id);
+		s.setTrangThai(false);
+		save(s);
 	}
  
 }

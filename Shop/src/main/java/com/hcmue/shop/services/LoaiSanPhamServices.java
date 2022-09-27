@@ -39,20 +39,27 @@ public class LoaiSanPhamServices implements Services<LoaiSanPhamModel>{
 
 	@Override
 	public LoaiSanPhamModel findOne(int id) {
-		// TODO Auto-generated method stub
+		LoaiSanPham s = repo.getById(id);
+		if(s != null) {
+			LoaiSanPhamModel loaiSanPhamModel = new LoaiSanPhamModel(s);
+			return loaiSanPhamModel;
+		}
 		return null;
 	}
 
 	@Override
 	public void save(LoaiSanPhamModel t) {
-		// TODO Auto-generated method stub
-		
+		if(t != null) {
+			LoaiSanPham s = new LoaiSanPham(t);
+			repo.save(s);
+		}
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		LoaiSanPhamModel s = findOne(id);
+		s.setTrangThai(false);
+		save(s);
 	}
  
 }

@@ -41,8 +41,7 @@ public class HomeController {
 	//Register
 	@PostMapping(value = "/register")
 	public ModelAndView registerProcessPage(Model model, @ModelAttribute("khachHang") KhachHangModel khachHang) {
-		System.err.println("<<<<<<<<<<>>>>>>>>>>>> Register");
-		khachHangServices.save(khachHang);
+		khachHangServices.register(khachHang);
 		return new ModelAndView("redirect:/login");
 	}
 }

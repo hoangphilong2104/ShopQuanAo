@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Khach Hang</title>
+</head>
+
+<body>
+	<div align="center">
+		<h1>Khach Hang</h1>
+		<form th:action="@{/admin/khachhang/add}" th:object="${item}" th:method="post">
+			<table>
+				<tr>
+					<td>MaKH</td>
+					<td><input type="text" th:field="*{MaKH}" required="required"></td>
+				</tr>
+				<tr>
+					<td>TenKH</td>
+					<td><input type="text" th:field="*{TenKH}"></td>
+				</tr>
+				<tr>
+					<td>NgaySinh</td>
+					<td><input type="text" th:field="*{NgaySinh}"></td>
+				</tr>
+				
+				<tr>
+					<td>GioiTinh</td>
+					<td><input type="text" th:field="*{GioiTinh}"></td>
+				</tr>
+				
+				<tr>
+					<td>TaiKhoan</td>
+					<td><input type="text" th:field="*{TaiKhoan}"></td>
+				</tr>
+
+				<tr>
+					<td>MatKhau</td>
+					<td><input type="text" th:field="*{MatKhau}"></td>
+				</tr>
+
+				<tr>
+					<td>DiaChi</td>
+					<td><input type="text" th:field="*{DiaChi}"></td>
+				</tr>
+
+				<tr>
+					<td>Email</td>
+					<td><input type="text" th:field="*{Email}"></td>
+				</tr>
+
+				<tr>
+					<td>SDT</td>
+					<td><input type="text" th:field="*{SDT}"></td>
+				</tr>
+
+				<tr>
+					<td><button type="submit">Save</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+
+
+</html>

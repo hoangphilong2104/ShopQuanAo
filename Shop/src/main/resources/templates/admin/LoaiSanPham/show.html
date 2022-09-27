@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Loai San Pham</title>
+</head>
+<body>
+<div align="center">
+	<a href="/admin/loaisanpham/add">Add Loai San Pham</a>
+	<table border="1" cellpadding="10">
+		<thead>
+			<tr>
+				<th>MaLoaiSP</th>
+				<th>TenLoaiSP</th>
+				<th>Slug</th>
+				<th>TrangThai</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="item: ${listItems}">
+				<td th:text="${item.MaLoaiSP}"></td>
+				<td th:text="${item.TenLoaiSP}"></td>
+				<td th:text="${item.Slug}"></td>
+				<td th:text="${item.TrangThai}"></td>
+				<td>
+					<a th:href= "@{'/admin/loaisanpham/edit/'+${item.MaLoaiSP}}">Edit</a>
+					<a th:href= "@{'/admin/loaisanpham/delete/'+${item.MaLoaiSP}}">Delete</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>	
+</body>
+</html>

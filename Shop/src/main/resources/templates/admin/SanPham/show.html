@@ -39,8 +39,8 @@
 				<td th:text="${item.SoLuongTon}"></td>
 				<td th:text="${item.TrangThai}"></td>
 				<td>
-					<a href= "#">Edit</a>
-					<a href= "#">Delete</a>
+					<a th:href= "@{'/admin/sanpham/edit/'+${item.MaSP}}">Edit</a>
+					<a th:href= "@{'/admin/sanpham/delete/'+${item.MaSP}}">Delete</a>
 				</td>
 			</tr>
 		</tbody>

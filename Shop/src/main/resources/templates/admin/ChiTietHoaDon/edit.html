@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Chi Tiet Hoa Don</title>
+</head>
+
+<body>
+	<div align="center">
+		<h1>Chi Tiet Hoa Don</h1>
+		<form th:action="@{/admin/chitiethoadon/add}" th:object="${item}" th:method="post">
+			<table>
+				<tr>
+					<td>MaHD</td>
+					<td><input type="text" th:field="*{MaHD}" required="required"></td>
+				</tr>
+				<tr>
+					<td>MaSP</td>
+					<td><input type="text" th:field="*{MaSP}"></td>
+				</tr>
+				<tr>
+					<td>SoLuong</td>
+					<td><input type="text" th:field="*{SoLuong}"></td>
+				</tr>
+				
+				<tr>
+					<td>DonGia</td>
+					<td><input type="text" th:field="*{DonGia}"></td>
+				</tr>
+				
+				<tr>
+					<td><button type="submit">Save</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+
+
+</html>

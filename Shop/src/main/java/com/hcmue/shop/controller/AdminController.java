@@ -52,6 +52,11 @@ public class AdminController {
 		return new ModelAndView("admin/DashBoard");
 	}
 	
+	@GetMapping("/dashboard")
+	public ModelAndView dashBoard() {
+		return new ModelAndView("admin/DashBoard");
+	}
+	
 	/*
 	 * No: 			1
 	 * Class: 		ChiTietHoaDon

@@ -43,22 +43,36 @@ public class KhachHangServices implements Services<KhachHangModel>{
 
 	@Override
 	public KhachHangModel findOne(int id) {
-		// TODO Auto-generated method stub
+		KhachHang s = repo.getById(id);
+		if(s!=null) {
+			KhachHangModel khachHangModel = new KhachHangModel(s);
+			return khachHangModel;
+		}
 		return null;
 	}
 
 	@Override
 	public void save(KhachHangModel t) {
-		passwordEncoder = new BCryptPasswordEncoder();
-		t.setMatKhau(passwordEncoder.encode(t.getMatKhau()));
-		KhachHang khachHang = new KhachHang(t);
-		repo.save(khachHang);
+		if(t!= null) {
+			KhachHang s= new KhachHang(t);
+			repo.save(s);
+		}
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		KhachHangModel s = findOne(id);
+		s.setTrangThai(false);
+		save(s);
 		
+	}
+
+	public void register(KhachHangModel t) {
+		if(t != null) {
+			passwordEncoder = new BCryptPasswordEncoder();
+			t.setMatKhau(passwordEncoder.encode(t.getMatKhau()));
+			save(t);
+		}
 	}
  
 }

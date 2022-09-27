@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hoa Don</title>
+</head>
+
+<body>
+	<div align="center">
+		<h1>Hoa Don</h1>
+		<form th:action="@{/admin/hoadon/add}" th:object="${item}" th:method="post">
+			<table>
+				<tr>
+					<td>MaHD</td>
+					<td><input type="text" th:field="*{MaHD}" required="required"></td>
+				</tr>
+				<tr>
+					<td>NgayDat</td>
+					<td><input type="text" th:field="*{NgayDat}"></td>
+				</tr>
+				<tr>
+					<td>NgayGiao</td>
+					<td><input type="text" th:field="*{NgayGiao}"></td>
+				</tr>
+				
+				<tr>
+					<td>TinhTrang</td>
+					<td><input type="text" th:field="*{TinhTrang}"></td>
+				</tr>
+				
+				<tr>
+					<td>MaKH</td>
+					<td><input type="text" th:field="*{MaKH}"></td>
+				</tr>
+
+				<tr>
+					<td><button type="submit">Save</button></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+
+
+</html>

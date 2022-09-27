@@ -39,19 +39,27 @@ public class NhaCungCapServices implements Services<NhaCungCapModel>{
 
 	@Override
 	public NhaCungCapModel findOne(int id) {
-		// TODO Auto-generated method stub
+		NhaCungCap s = repo.getById(id);
+		if(s != null) {
+			NhaCungCapModel nhaCungCapModel = new NhaCungCapModel(s);
+			return nhaCungCapModel;
+		}
 		return null;
 	}
 
 	@Override
 	public void save(NhaCungCapModel t) {
-		// TODO Auto-generated method stub
-		
+		if(t != null) {
+			NhaCungCap s = new NhaCungCap(t);
+			repo.save(s);
+		}
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		NhaCungCapModel s = findOne(id);
+		s.setTrangThai(false);
+		save(s);
 		
 	}
  

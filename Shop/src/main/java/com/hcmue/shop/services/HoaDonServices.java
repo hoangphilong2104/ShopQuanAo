@@ -39,20 +39,25 @@ public class HoaDonServices implements Services<HoaDonModel>{
 
 	@Override
 	public HoaDonModel findOne(int id) {
-		// TODO Auto-generated method stub
+		HoaDon s = repo.getById(id);
+		if(s != null) {
+			HoaDonModel hoaDonModel = new HoaDonModel(s);
+			return hoaDonModel;
+		}
 		return null;
 	}
 
 	@Override
 	public void save(HoaDonModel t) {
-		// TODO Auto-generated method stub
-		
+		if(t != null) {
+			HoaDon s = new HoaDon(t);
+			repo.save(s);
+		}
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
-		
+		//Not have delete
 	}
  
 }
