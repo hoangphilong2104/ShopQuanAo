@@ -64,7 +64,7 @@ CREATE TABLE IF NOT EXISTS `khachhang` (
   PRIMARY KEY (`MaKH`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table qlshopthoitrang.khachhang: ~1 rows (approximately)
+-- Dumping data for table qlshopthoitrang.khachhang: ~2 rows (approximately)
 DELETE FROM `khachhang`;
 INSERT INTO `khachhang` (`MaKH`, `TenKH`, `NgaySinh`, `GioiTinh`, `TaiKhoan`, `MatKhau`, `DiaChi`, `Email`, `SDT`, `TrangThai`) VALUES
 	(1, 'Long', '2022-09-22 22:31:30', 'Nam', 'long', '$2a$10$GW3P6Lj5.pPVbXZm2tGxxuicJYnYSvjW2QJdE6B24P.6p0AS0WMBm', '135', '123@gmail.com', '123', 1),
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `sanpham` (
 -- Dumping data for table qlshopthoitrang.sanpham: ~42 rows (approximately)
 DELETE FROM `sanpham`;
 INSERT INTO `sanpham` (`MaSP`, `TenSP`, `MoTa`, `GioiTinh`, `GiaBan`, `GiaNhap`, `Anh`, `Slug`, `MaLoaiSP`, `MaNCC`, `SoLuongTon`, `TrangThai`) VALUES
-	(1, 'ÁO THUN NAM NGẮN TAY CỔ TRỤ', 'ÁO THUN NAM NGẮN TAY CỔ TRỤ THUN COTTON SỌC NGANG PHỐI 2 MÀU ĐẸP MẮT<br>Chất liệu: Vải 100% thun cotton mềm mịn, thấm hút mồ hôi tốt', 'Nam', 145000, 100000, 'N\'ao-thun-nam-ngan-tay.jpg', 'ao-thun-nam-ngan-tay-co-tru', 1, 1, 100, 1),
+	(1, 'ÁO THUN NAM NGẮN TAY CỔ TRỤ', 'ÁO THUN NAM NGẮN TAY CỔ TRỤ THUN COTTON SỌC NGANG PHỐI 2 MÀU ĐẸP MẮT<br>Chất liệu: Vải 100% thun cotton mềm mịn, thấm hút mồ hôi tốt', 'Nam', 145000, 100000, 'ao-thun-nam-ngan-tay.jpg', 'ao-thun-nam-ngan-tay-co-tru', 1, 1, 100, 1),
 	(2, 'ÁO THUN NAM NGẮN TAY CỔ TRỤ', 'ÁO THUN NAM CỔ TRỤ NGẮN TAY VIỀN CỔ IN LOGO MẪU MỚI<br>Chất liệu: Vải 100% thun cotton mềm mịn, thấm hút mồ hôi tốt', 'Nam', 155000, 100000, 'ao-thun-nam-co-tru-ngan-tay.jpg', 'ao-thun-nam-ngan-tay-co-tru-1', 1, 1, 100, 1),
 	(3, 'ÁO THUN NAM HÌNH HỔ 3D', 'ÁO THUN NAM HÌNH HỔ 3D: Chất vải thun 3D mịn lạnh, thấm hút mồ hôi nhanh giúp các chàng luôn thoải mái khi vận động, chơi các trò chơi thể thao, thể chất. Bên cạnh đó là thiết kế mạnh mẽ với hình hổ ấn tượng mang đến cho các chàng sự sang trọng, trẻ trung  để các chàng luôn sẵn sàng xuất hiện trước các nàng mà không lo thiếu sự thu hút.<br>Chất liệu: VẢI THUN 3D CO GIÃN CAO CẤP', 'Nam', 155000, 100000, 'ao-thun-nam-hinh-ho-3d.jpg', 'ao-thun-nam-hinh-ho-3d', 1, 1, 100, 1),
 	(4, 'SƠ MI NAM HÀN QUỐC TRẺ TRUNG', 'SƠ MI NAM HÀN QUỐC TRẺ TRUNG: Chất vải dày dặn cao cấp, đặc biệt với những sọc nhỏ tinh tế cùng dáng áo chuẩn để các chàng tự tin khoe dáng. Bên cạnh đó là chất màu lên tông chuẩn để các chàng lựa chọn phong cách cho mình thật thoải mái. Ngoài ra, với thiết kế tay dài thanh lịch, chiếc áo sẽ là bạn đồng hành cùng các chàng trai trong những ngày lên công tay hay trong những buổi gặp khách hàng.<br>Chất liệu: VẢI KAKI MỀM', 'Nam', 240000, 100000, 'so-mi-nam-han-quoc.jpg', 'so-mi-nam-han-quoc-tre-trung', 3, 1, 100, 1),
