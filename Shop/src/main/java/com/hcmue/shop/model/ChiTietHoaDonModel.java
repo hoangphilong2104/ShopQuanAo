@@ -50,4 +50,8 @@ public class ChiTietHoaDonModel {
 		DonGia = c.getDonGia();
 		SoLuong = c.getSoLuong();
 	}
+	
+	public ChiTietHoaDonModel() {
+	}
+	
 }

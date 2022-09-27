@@ -51,6 +51,9 @@ public class LoaiSanPhamModel {
 		TrangThai = l.getTrangThai();
 	}
 	
-	
+	public LoaiSanPhamModel() {
+		
+	}
+
 
 }

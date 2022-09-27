@@ -63,4 +63,8 @@ public class HoaDonModel {
 		TinhTrang = h.getTinhTrang();
 		MaKH = h.getMaKH();
 	}
+	
+	public HoaDonModel() {
+		
+	}
 }

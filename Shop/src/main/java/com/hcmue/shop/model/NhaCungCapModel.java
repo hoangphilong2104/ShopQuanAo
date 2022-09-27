@@ -61,4 +61,9 @@ public class NhaCungCapModel {
 		SDT = n.getSDT();
 		TrangThai = n.getTrangThai();
 	}
+	
+	public NhaCungCapModel() {
+		
+	}
+	
 }
