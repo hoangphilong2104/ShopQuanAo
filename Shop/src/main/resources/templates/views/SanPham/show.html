@@ -32,16 +32,16 @@
 				<td th:text="${item.GioiTinh}"></td>
 				<td th:text="${item.GiaBan}"></td>
 				<td th:text="${item.GiaNhap}"></td>
-				<td th:text="${item.Anh}"></td>
+				
+				<td>
+					<img alt="" th:src="@{'/sanpham/getimage/'+${item.Anh}}" width="200px" height="200px" />
+				</td>
+				
 				<td th:text="${item.Slug}"></td>
 				<td th:text="${item.MaLoaiSP}"></td>
 				<td th:text="${item.MaNCC}"></td>
 				<td th:text="${item.SoLuongTon}"></td>
 				<td th:text="${item.TrangThai}"></td>
-				<td>
-					<a href= "#">Edit</a>
-					<a href= "#">Delete</a>
-				</td>
 			</tr>
 		</tbody>
 	</table>
