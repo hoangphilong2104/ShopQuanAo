@@ -4,10 +4,15 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,7 +42,8 @@ public class HomeController {
 	//Login
 	@GetMapping(value = "/login")
 	public ModelAndView loginPage(Model model) {
-		model.addAttribute("khachHang", new KhachHangModel());
+		System.err.println("Login");
+		model.addAttribute("items", new KhachHangModel());
 		return new ModelAndView("views/Login");
 	}
 	
@@ -53,6 +59,16 @@ public class HomeController {
 	public ModelAndView registerProcessPage(Model model, @ModelAttribute("khachHang") KhachHangModel khachHang) {
 		khachHangServices.register(khachHang);
 		return new ModelAndView("redirect:/login");
+	}
+	
+	// Logout
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public ModelAndView logoutPage(HttpServletRequest request, HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return new ModelAndView("redirect:/");
 	}
 	
 	@RequestMapping(value = "static/css/{files}", method = RequestMethod.GET)

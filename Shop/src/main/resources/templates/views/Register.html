@@ -1,29 +1,86 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Khach Hang</title>
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Login</title>
+     <link rel="stylesheet" href="../../static/css/style.css">
+     <link rel="preconnect" href="https://fonts.gstatic.com">
+     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
-<div align="center">
-	<h1>Login</h1>
-	<form th:action="@{/register}" method="post" th:object="${khachHang}">
-		<label>TenKH:</label>
-		<input type="text" th:field ="*{TenKH}"/><br/><br/>
-		<label>GioiTinh:</label>
-		<input type="text" th:field ="*{GioiTinh}"/><br/><br/>
-		<label>TaiKhoan:</label>
-		<input type="text" th:field ="*{TaiKhoan}"/><br/><br/>
-		<label>MatKhau:</label>
-		<input type="password" th:field ="*{MatKhau}"/><br/><br/>
-		<label>DiaChi:</label>
-		<input type="text" th:field ="*{DiaChi}"/><br/><br/>
-		<label>Email:</label>
-		<input type="text" th:field ="*{Email}"/><br/><br/>
-		<label>SDT:</label>
-		<input type="text" th:field ="*{SDT}"/><br/><br/>
-		<input type="submit" value="Register"/><br/>
-	</form>
-</div>	
+	
+	<div class="container py-5 h-100">
+    <div class="row d-flex align-items-center justify-content-center h-100">
+      <div class="col-md-8 col-lg-7 col-xl-6">
+        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+           alt="Phone image" height="100%" width="100%">
+      </div>
+      <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+      	<div class="col-lg-3 d-none d-lg-block">
+                <a href="" class="text-decoration-none">
+                    <h1 class="m-0 display-5 font-weight-semi-bold" ><span class="text-primary font-weight-bold border px-3 mr-1" >Register</span></h1>
+                </a>
+     	</div>  
+		<form th:action="@{/register}" method="post" th:object="${khachHang}">
+			
+			<!-- Name input -->
+          <div class="form-outline mb-4">
+          	<label class="form-label" for="form1Example13" style="font-weight: bold;">Họ và tên:</label>
+            <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Họ và tên" th:field="*{TenKH}" name="TenKH" required="required"/>
+            
+          </div>
+          
+          <!-- Gioi Tinh input -->
+          <div class="form-outline mb-4">
+          	<label class="form-label" for="form1Example13" style="font-weight: bold;">Giới tính:</label>
+            <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Giới tính" th:field="*{GioiTinh}" name="GioiTinh" required="required"/>
+            
+          </div>
+          
+          <!-- Tai Khoan input -->
+          <div class="form-outline mb-4">
+          	<label class="form-label" for="form1Example13" style="font-weight: bold;">Tài Khoản:</label>
+            <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Tài khoản" th:field="*{TaiKhoan}" name="TaiKhoan" required="required"/>
+            
+          </div>
+
+          <!-- Password input -->
+          <div class="form-outline mb-4">
+          	<label class="form-label" for="form1Example23" style="font-weight: bold;">Mật Khẩu:</label>
+            <input type="password" id="form1Example23" class="form-control" placeholder="Mật khẩu" th:field="*{MatKhau}" name="MatKhau" required="required"/>
+            
+          </div>
+			
+			<!-- Dia Chi input -->
+          <div class="form-outline mb-4">
+          	<label class="form-label" for="form1Example13" style="font-weight: bold;">Địa chỉ:</label>
+            <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="Địa chỉ" th:field="*{DiaChi}" name="DiaChi" required="required"/>
+            
+          </div>
+          
+          <!-- Tai Khoan input -->
+          <div class="form-outline mb-4">
+          	<label class="form-label" for="form1Example13" style="font-weight: bold;">Email:</label>
+            <input type="email" id="form1Example13" class="form-control form-control-lg" placeholder="Email" th:field="*{email}" name="email" required="required"/>
+            
+          </div>
+          
+          <!-- Tai Khoan input -->
+          <div class="form-outline mb-4">
+          	<label class="form-label" for="form1Example13" style="font-weight: bold;">SĐT:</label>
+            <input type="text" id="form1Example13" class="form-control form-control-lg" placeholder="SĐT" th:field="*{SDT}" name="SDT" required="required"/>
+            
+          </div>
+          
+          <!-- Submit button -->
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Đăng ký</button>
+          
+		</form>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
