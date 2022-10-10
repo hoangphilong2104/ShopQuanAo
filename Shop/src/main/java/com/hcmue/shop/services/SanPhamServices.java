@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.hcmue.shop.entity.SanPham;
@@ -61,5 +63,11 @@ public class SanPhamServices implements Services<SanPhamModel>{
 		s.setTrangThai(false);
 		save(s);
 	}
+
+	public Page<SanPham> getPaginated(PageRequest pageable) {
+		Page<SanPham> list = repo.findAllSanPham(pageable);
+		return list;
+	}
+	
  
 }

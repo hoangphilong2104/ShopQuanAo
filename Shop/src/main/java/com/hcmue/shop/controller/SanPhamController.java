@@ -4,13 +4,16 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.hcmue.shop.model.KhachHangModel;
+import com.hcmue.shop.entity.SanPham;
 import com.hcmue.shop.model.SanPhamModel;
 import com.hcmue.shop.services.SanPhamServices;
 
@@ -30,11 +33,26 @@ public class SanPhamController {
 	private SanPhamServices ser;
 	
 	@RequestMapping(value = "")
-	public ModelAndView SanPhamPage(Model model) {
-		List<SanPhamModel> listItems = ser.listAll();
-		model.addAttribute("listItems", listItems);
-		return new ModelAndView("views/SanPham/show");
+	public ModelAndView SanPhamPage() {
+		return new ModelAndView("redirect:/sanpham/page/1");
 	}
+	
+	@RequestMapping(value = "/page/{page}")
+    public ModelAndView listArticlesPageByPage(@PathVariable("page") int page) {
+		ModelAndView modelAndView = new ModelAndView("views/SanPham/show");
+		PageRequest pageable = PageRequest.of(page - 1, 6);
+        Page<SanPham> productPage = ser.getPaginated(pageable);
+        int totalPages = productPage.getTotalPages();
+        if(totalPages > 0) {
+            List<Integer> pageNumbers = IntStream.rangeClosed(1,totalPages).boxed().collect(Collectors.toList());
+            modelAndView.addObject("pageNumbers", pageNumbers);
+        }
+        String urlpage =String.valueOf(page);
+        modelAndView.addObject("urlpage", urlpage);
+        modelAndView.addObject("activeArticleList", true);
+        modelAndView.addObject("articleList", productPage.getContent());
+        return modelAndView;
+    }
 	
 	//Show Image
 	@RequestMapping(value = "getimage/{Anh}", method = RequestMethod.GET)
