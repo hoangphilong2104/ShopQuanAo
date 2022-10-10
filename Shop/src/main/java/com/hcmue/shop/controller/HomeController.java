@@ -3,6 +3,7 @@ package com.hcmue.shop.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.security.Principal;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,14 +36,26 @@ public class HomeController {
 	
 	//Home Page
 	@RequestMapping(value = "")
-	public ModelAndView userHomePage() {
-		return new ModelAndView("views/TrangChu");
+	public ModelAndView userHomePage(Principal principal) {
+		if(principal == null) {
+			return new ModelAndView("views/TrangChu");
+		}else {
+			String username = principal.getName();
+			return new ModelAndView("views/TrangChu", "username", username);
+		}
 	}
 	
 	//Login
 	@GetMapping(value = "/login")
 	public ModelAndView loginPage(Model model) {
-		System.err.println("Login");
+		model.addAttribute("items", new KhachHangModel());
+		return new ModelAndView("views/Login");
+	}
+	
+	//error login
+	@GetMapping(value = "/login_error")
+	public ModelAndView loginError(Model model) {
+		model.addAttribute("stringError","faild");
 		model.addAttribute("items", new KhachHangModel());
 		return new ModelAndView("views/Login");
 	}

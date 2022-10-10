@@ -145,10 +145,21 @@
                             </div>
                             <a th:href="@{/contact}" class="nav-item nav-link">Contact</a>
                         </div>
-                        <div class="navbar-nav ml-auto py-0">
-                            <a th:href="@{/login}" class="nav-item nav-link">Login</a>
-                            <a th:href="@{/register}" class="nav-item nav-link">Register</a>
-                        </div>
+                        
+                        <div th:if="${username}">
+						   
+						   <div class="navbar-nav ml-auto py-0">
+						  		 <a th:text=" 'Hi, ' + ${username}" class="nav-item nav-link" style="color: red"></a>
+	                            <a th:href="@{/logout}" class="nav-item nav-link">Logout</a>
+                        	</div>
+						</div>
+						<!-- ELSE -->
+						<div th:unless="${username}">
+						   <div class="navbar-nav ml-auto py-0">
+	                            <a th:href="@{/login}" class="nav-item nav-link">Login</a>
+	                            <a th:href="@{/register}" class="nav-item nav-link">Register</a>
+                        	</div>
+						</div>
                     </div>
                 </nav>
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">

@@ -47,7 +47,12 @@
             </div>
             <a href="#!">Forgot password?</a>
           </div>
-
+			<div th:if="${stringError}">
+			   <div style="color: red; text-align: center">Username or Password is incorrect</div>
+			</div>
+			<!-- ELSE -->
+			<div th:unless="${stringError}">
+			</div>
           <!-- Submit button -->
           <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
           
