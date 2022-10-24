@@ -103,6 +103,7 @@ public class KhachHang {
 	}
 	
 	public KhachHang() {
+		this.TrangThai = true;
 	}
 
 	@Override

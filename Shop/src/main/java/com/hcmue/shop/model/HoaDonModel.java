@@ -65,6 +65,5 @@ public class HoaDonModel {
 	}
 	
 	public HoaDonModel() {
-		
 	}
 }

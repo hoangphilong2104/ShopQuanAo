@@ -140,5 +140,6 @@ public class SanPhamModel {
 	}
 	
 	public SanPhamModel() {
+		this.TrangThai = true;
 	}
 }

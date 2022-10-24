@@ -116,6 +116,7 @@ public class SanPham {
 	}
 
 	public SanPham() {
+		this.TrangThai = true;
 	}
 
 	@Override

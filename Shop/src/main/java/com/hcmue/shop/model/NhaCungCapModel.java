@@ -63,7 +63,7 @@ public class NhaCungCapModel {
 	}
 	
 	public NhaCungCapModel() {
-		
+		this.TrangThai = true;
 	}
 	
 }

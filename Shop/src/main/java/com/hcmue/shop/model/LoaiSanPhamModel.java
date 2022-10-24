@@ -52,7 +52,7 @@ public class LoaiSanPhamModel {
 	}
 	
 	public LoaiSanPhamModel() {
-		
+		this.TrangThai = true;
 	}
 
 

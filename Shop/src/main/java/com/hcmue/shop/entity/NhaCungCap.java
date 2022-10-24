@@ -59,6 +59,7 @@ public class NhaCungCap {
 	}
 
 	public NhaCungCap() {
+		this.TrangThai = true;
 	}
 
 	@Override

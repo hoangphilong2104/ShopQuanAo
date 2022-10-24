@@ -51,6 +51,7 @@ public class LoaiSanPham {
 	}
 
 	public LoaiSanPham() {
+		this.TrangThai = true;
 	}
 
 	@Override

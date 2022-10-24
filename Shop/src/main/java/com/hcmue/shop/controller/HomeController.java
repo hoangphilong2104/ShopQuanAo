@@ -4,9 +4,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -15,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.hcmue.shop.model.Item;
 import com.hcmue.shop.model.KhachHangModel;
 import com.hcmue.shop.services.KhachHangServices;
 
@@ -36,7 +40,15 @@ public class HomeController {
 	
 	//Home Page
 	@RequestMapping(value = "")
-	public ModelAndView userHomePage(Principal principal) {
+	public ModelAndView userHomePage(Principal principal, HttpSession session, ModelMap model) {
+		int size_cart = 0;
+		@SuppressWarnings("unchecked")
+		List<Item> cart = (List<Item>) session.getAttribute("cart");
+		if(cart != null) {
+			size_cart = cart.size();
+			
+		}
+		model.addAttribute("size_cart",size_cart);
 		if(principal == null) {
 			return new ModelAndView("views/TrangChu");
 		}else {
@@ -123,6 +135,108 @@ public class HomeController {
 	public ResponseEntity<ByteArrayResource> getImages(@PathVariable("files") String files){
 			try {
 				Path filename = Paths.get("src/main/resources/static/images/",files);
+				byte[] buffer = Files.readAllBytes(filename);
+				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+				return ResponseEntity.ok()
+						.contentLength(buffer.length)
+						//.contentType(MediaType.parseMediaType(""))
+						.body(byteArrayResource);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@RequestMapping(value = "static/mail/{files}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<ByteArrayResource> getMail(@PathVariable("files") String files){
+			try {
+				Path filename = Paths.get("src/main/resources/static/mail/",files);
+				byte[] buffer = Files.readAllBytes(filename);
+				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+				return ResponseEntity.ok()
+						.contentLength(buffer.length)
+						//.contentType(MediaType.parseMediaType(""))
+						.body(byteArrayResource);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@RequestMapping(value = "static/scss/{files}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<ByteArrayResource> getSCSS(@PathVariable("files") String files){
+			try {
+				Path filename = Paths.get("src/main/resources/static/scss/",files);
+				byte[] buffer = Files.readAllBytes(filename);
+				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+				return ResponseEntity.ok()
+						.contentLength(buffer.length)
+						//.contentType(MediaType.parseMediaType(""))
+						.body(byteArrayResource);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@RequestMapping(value = "static/icon/{files}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<ByteArrayResource> getIcon(@PathVariable("files") String files){
+			try {
+				Path filename = Paths.get("src/main/resources/static/icon/",files);
+				byte[] buffer = Files.readAllBytes(filename);
+				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+				return ResponseEntity.ok()
+						.contentLength(buffer.length)
+						//.contentType(MediaType.parseMediaType(""))
+						.body(byteArrayResource);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@RequestMapping(value = "static/lib/owlcarousel/{files}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<ByteArrayResource> getOwlcarousel(@PathVariable("files") String files){
+			try {
+				Path filename = Paths.get("src/main/resources/static/lib/owlcarousel/",files);
+				byte[] buffer = Files.readAllBytes(filename);
+				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+				return ResponseEntity.ok()
+						.contentLength(buffer.length)
+						//.contentType(MediaType.parseMediaType(""))
+						.body(byteArrayResource);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@RequestMapping(value = "static/lib/owlcarousel/assets/{files}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<ByteArrayResource> getOwlcarouselAssest(@PathVariable("files") String files){
+			try {
+				Path filename = Paths.get("src/main/resources/static/lib/owlcarousel/assets/",files);
+				byte[] buffer = Files.readAllBytes(filename);
+				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+				return ResponseEntity.ok()
+						.contentLength(buffer.length)
+						//.contentType(MediaType.parseMediaType(""))
+						.body(byteArrayResource);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@RequestMapping(value = "static/lib/easing/{files}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<ByteArrayResource> getOwlcarouselEasing(@PathVariable("files") String files){
+			try {
+				Path filename = Paths.get("src/main/resources/static/lib/easing/",files);
 				byte[] buffer = Files.readAllBytes(filename);
 				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
 				return ResponseEntity.ok()

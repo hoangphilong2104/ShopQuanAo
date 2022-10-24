@@ -107,6 +107,7 @@ public class KhachHangModel {
 	}
 
 	public KhachHangModel() {
+		this.TrangThai = true;
 	}
 	
 	public KhachHangModel(KhachHang k) {
