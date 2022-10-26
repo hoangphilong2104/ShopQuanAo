@@ -11,16 +11,22 @@ import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.OAuthTokenCredential;
 import com.paypal.base.rest.PayPalRESTException;
 
-//@Configuration
+@Configuration
 public class PaypalConfig {
-	
 
-	@Value("AdEAgIlkgs8Lkr7uqGyeUSokqVj5ws7IklGiy48LX5Z7-cADnZq-XN_lcvo3xXR8mROwTRT8JFAaxhaC")
+	@Value("${paypal.client.id}")
 	private String clientId;
-	@Value("EO94csniqz926R2fo8yZa7LgAaEyeA8MLkDOW-s1iL8DZBmIl0gdIqd-pW-3_i-aFQ2pNK5jJ7JXFKsA")
+	@Value("${paypal.client.secret}")
 	private String clientSecret;
-	@Value("sandbox")
+	@Value("${paypal.mode}")
 	private String mode;
+	
+//	@Value("AdEAgIlkgs8Lkr7uqGyeUSokqVj5ws7IklGiy48LX5Z7-cADnZq-XN_lcvo3xXR8mROwTRT8JFAaxhaC")
+//	private String clientId;
+//	@Value("EO94csniqz926R2fo8yZa7LgAaEyeA8MLkDOW-s1iL8DZBmIl0gdIqd-pW-3_i-aFQ2pNK5jJ7JXFKsA")
+//	private String clientSecret;
+//	@Value("sandbox")
+//	private String mode;
 	
 	@Bean
 	public Map<String, String> paypalSdkConfig() {

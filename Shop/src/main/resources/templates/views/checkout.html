@@ -177,84 +177,126 @@
     <!-- Page Header Start -->
     <div class="container-fluid bg-secondary mb-5">
         <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-            <h1 class="font-weight-semi-bold text-uppercase mb-3">Shopping Cart</h1>
+            <h1 class="font-weight-semi-bold text-uppercase mb-3">Checkout</h1>
             <div class="d-inline-flex">
-                <p class="m-0"><a th:href="@{/}">Home</a></p>
+                <p class="m-0"><a href="">Home</a></p>
                 <p class="m-0 px-2">-</p>
-                <p class="m-0">Shopping Cart</p>
+                <p class="m-0">Checkout</p>
             </div>
         </div>
     </div>
     <!-- Page Header End -->
 
 
-    <!-- Cart Start -->
+    <!-- Checkout Start -->
     <div class="container-fluid pt-5">
-        <div class="row px-xl-5">
-            <div class="col-lg-8 table-responsive mb-5">
-                <table class="table table-bordered text-center mb-0">
-                    <thead class="bg-secondary text-dark">
-                        <tr>
-                            <th>Products</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Remove</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        <tr th:each="item : ${session.cart}">
-                            <td class="align-middle"><img th:src="@{'/sanpham/getimage/'+${item.sanPham.Anh}}" alt="" style="width: 50px;"> Colorful Stylish Shirt</td>
-                            <td class="align-middle" th:text="@{${item.sanPham.GiaBan}*1+' VND'}" style="font-style: normal;" >$150</td>
-                            <td class="align-middle">
-                                <div class="input-group quantity mx-auto" style="width: 100px;">
-                                    <div class="input-group-btn">
-                                    	<form th:action="@{'/cart/remove/'+${item.sanPham.MaSP}}">
-	                                        <button class="btn btn-sm btn-primary btn-minus" >
-	                                        	<i class="fa fa-minus"></i>
-	                                        </button>
-                                        </form>
-                                    </div>
-                                    <input type="text" class="form-control form-control-sm bg-secondary text-center" th:value="${item.quantity}"/>
-                                    <div class="input-group-btn">
-                                    	<form th:action="@{'/cart/add/'+${item.sanPham.MaSP}}">
-	                                        <button class="btn btn-sm btn-primary btn-plus">
-	                                            <i class="fa fa-plus"><a th:href="@{'/cart/buy/'+${item.sanPham.MaSP}}"></a></i>
-	                                        </button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </td>
-                            <td class="align-middle" th:text="@{${item.sanPham.GiaBan}*${item.quantity}+' VND'}" id="price1">$150</td>
-                            <form th:action="@{'/cart/removeAll/'+${item.sanPham.MaSP}}">
-                            	<td class="align-middle"><button class="btn btn-sm btn-primary" type="submit"><i class="fa fa-times"></i></button></td>
-                        	</form>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="col-lg-4">
-                <div class="card border-secondary mb-5">
-                    <div class="card-header bg-secondary border-0">
-                        <h4 class="font-weight-semi-bold m-0">Cart Summary</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between mb-3 pt-1">
-                            <h6 class="font-weight-medium">Subtotal</h6>
-                            <h6 class="font-weight-medium" th:text="@{${total}+'VND'}">$150</h6>
-                        </div>
-                    </div>
-                    <div class="card-footer border-secondary bg-transparent">
-                        <form th:action="@{/checkout}">
-                        	<button class="btn btn-block btn-primary my-3 py-3" type="submit">Proceed To Checkout</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    	<form >
+	        <div class="row px-xl-5">
+	            <div class="col-lg-8">
+	                <div class="mb-4">
+	                    <h4 class="font-weight-semi-bold mb-4">Billing Address</h4>
+	                    <div class="row">
+	                        <div class="col-md-6 form-group">
+	                            <label>First Name</label>
+	                            <input class="form-control" type="text" placeholder="John">
+	                        </div>
+	                        <div class="col-md-6 form-group">
+	                            <label>Last Name</label>
+	                            <input class="form-control" type="text" placeholder="Doe">
+	                        </div>
+	                        <div class="col-md-6 form-group">
+	                            <label>E-mail</label>
+	                            <input class="form-control" type="text" placeholder="example@email.com">
+	                        </div>
+	                        <div class="col-md-6 form-group">
+	                            <label>Mobile No</label>
+	                            <input class="form-control" type="text" placeholder="+123 456 789">
+	                        </div>
+	                        <div class="col-md-6 form-group">
+	                            <label>Address Line 1</label>
+	                            <input class="form-control" type="text" placeholder="123 Street">
+	                        </div>
+	                        <div class="col-md-6 form-group">
+	                            <label>Address Line 2</label>
+	                            <input class="form-control" type="text" placeholder="123 Street">
+	                        </div>
+	                        <div class="col-md-6 form-group">
+	                            <label>Country</label>
+	                            <select class="custom-select">
+	                                <option selected>United States</option>
+	                                <option>Afghanistan</option>
+	                                <option>Albania</option>
+	                                <option>Algeria</option>
+	                            </select>
+	                        </div>
+	                        <div class="col-md-6 form-group">
+	                            <label>City</label>
+	                            <input class="form-control" type="text" placeholder="New York">
+	                        </div>
+	                        <div class="col-md-6 form-group">
+	                            <label>State</label>
+	                            <input class="form-control" type="text" placeholder="New York">
+	                        </div>
+	                        <div class="col-md-6 form-group">
+	                            <label>ZIP Code</label>
+	                            <input class="form-control" type="text" placeholder="123">
+	                        </div>
+	                        <div class="col-md-12 form-group">
+	                            <div class="custom-control custom-checkbox">
+	                                <input type="checkbox" class="custom-control-input" id="newaccount">
+	                                <label class="custom-control-label" for="newaccount">Create an account</label>
+	                            </div>
+	                        </div>
+	                        <div class="col-md-12 form-group">
+	                            <div class="custom-control custom-checkbox">
+	                                <input type="checkbox" class="custom-control-input" id="shipto">
+	                                <label class="custom-control-label" for="shipto"  data-toggle="collapse" data-target="#shipping-address">Ship to different address</label>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	            <div class="col-lg-4">
+	                <div class="card border-secondary mb-5">
+	                    <div class="card-header bg-secondary border-0">
+	                        <h4 class="font-weight-semi-bold m-0">Order Total</h4>
+	                    </div>
+	                    <div class="card-body">
+	                        <div class="d-flex justify-content-between mb-3 pt-1">
+	                            <h6 class="font-weight-medium">Subtotal</h6>
+	                            <h6 class="font-weight-medium" th:text="${total}*1 +' VND'">$150</h6>
+	                        </div>
+	                        <div class="d-flex justify-content-between">
+	                            <h6 class="font-weight-medium">Shipping</h6>
+	                            <h6 class="font-weight-medium">20 000 VND</h6>
+	                        </div>
+	                    </div>
+	                    <div class="card-footer border-secondary bg-transparent">
+	                        <div class="d-flex justify-content-between mt-2">
+	                            <h5 class="font-weight-bold">Total(VND)</h5>
+	                            <h5 class="font-weight-bold" th:text="${total}*1+20000 +' VND'">$160</h5>
+	                        </div>
+	                    </div>
+	                    <div class="card-footer border-secondary bg-transparent">
+	                        <div class="d-flex justify-content-between mt-2">
+	                            <h5 class="font-weight-bold">Total(USD)</h5>
+	                            <h5 class="font-weight-bold" th:text="(${total}+20000)*4/100000 +' $'">$160</h5>
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="card border-secondary mb-5">
+	                    <div class="card-header bg-secondary border-0">
+	                        <h4 class="font-weight-semi-bold m-0">Payment Via Paypal</h4>
+	                    </div>
+	                    <div class="card-footer border-secondary bg-transparent">
+	                        <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" type="submit">Place Order</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+        </form>
     </div>
-    <!-- Cart End -->
-
+    <!-- Checkout End -->
 
     <!-- Footer Start -->
     <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
@@ -273,28 +315,12 @@
                     <div class="col-md-4 mb-5">
                         <h5 class="font-weight-bold text-dark mb-4">Quick Links</h5>
                         <div class="d-flex flex-column justify-content-start">
-                            <a class="text-dark mb-2" href="index.html"><i class="fa fa-angle-right mr-2"></i>Home</a>
-                            <a class="text-dark mb-2" href="shop.html"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
-                            <a class="text-dark mb-2" href="detail.html"><i class="fa fa-angle-right mr-2"></i>Shop Detail</a>
-                            <a class="text-dark mb-2" href="cart.html"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
-                            <a class="text-dark mb-2" href="checkout.html"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
-                            <a class="text-dark" href="contact.html"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
+                            <a class="text-dark mb-2" th:href="@{/}"><i class="fa fa-angle-right mr-2"></i>Home</a>
+                            <a class="text-dark mb-2" th:href="@{/sanpham}"><i class="fa fa-angle-right mr-2"></i>Our Shop</a>
+                            <a class="text-dark mb-2" th:href="@{/cart}"><i class="fa fa-angle-right mr-2"></i>Shopping Cart</a>
+                            <a class="text-dark mb-2" th:href="@{/checkout}"><i class="fa fa-angle-right mr-2"></i>Checkout</a>
+                            <a class="text-dark" th:href="@{/contact}"><i class="fa fa-angle-right mr-2"></i>Contact Us</a>
                         </div>
-                    </div>
-                    <div class="col-md-4 mb-5">
-                        <h5 class="font-weight-bold text-dark mb-4">Newsletter</h5>
-                        <form action="">
-                            <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Your Name" required="required" />
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Your Email"
-                                    required="required" />
-                            </div>
-                            <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Subscribe Now</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
@@ -323,112 +349,7 @@
     <script src="mail/contact.js"></script>
 
     <!-- Template Javascript -->
-    <script>
-    (function ($) {
-        "use strict";
-        
-        // Dropdown on mouse hover
-        $(document).ready(function () {
-            function toggleNavbarMethod() {
-                if ($(window).width() > 992) {
-                    $('.navbar .dropdown').on('mouseover', function () {
-                        $('.dropdown-toggle', this).trigger('click');
-                    }).on('mouseout', function () {
-                        $('.dropdown-toggle', this).trigger('click').blur();
-                    });
-                } else {
-                    $('.navbar .dropdown').off('mouseover').off('mouseout');
-                }
-            }
-            toggleNavbarMethod();
-            $(window).resize(toggleNavbarMethod);
-        });
-        
-        
-        // Back to top button
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) {
-                $('.back-to-top').fadeIn('slow');
-            } else {
-                $('.back-to-top').fadeOut('slow');
-            }
-        });
-        $('.back-to-top').click(function () {
-            $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
-            return false;
-        });
-
-
-        // Vendor carousel
-        $('.vendor-carousel').owlCarousel({
-            loop: true,
-            margin: 29,
-            nav: false,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsive: {
-                0:{
-                    items:2
-                },
-                576:{
-                    items:3
-                },
-                768:{
-                    items:4
-                },
-                992:{
-                    items:5
-                },
-                1200:{
-                    items:6
-                }
-            }
-        });
-
-
-        // Related carousel
-        $('.related-carousel').owlCarousel({
-            loop: true,
-            margin: 29,
-            nav: false,
-            autoplay: true,
-            smartSpeed: 1000,
-            responsive: {
-                0:{
-                    items:1
-                },
-                576:{
-                    items:2
-                },
-                768:{
-                    items:3
-                },
-                992:{
-                    items:4
-                }
-            }
-        });
-
-
-        // Product Quantity
-        $('.quantity button').on('click', function () {
-            var button = $(this);
-            var oldValue = button.parent().parent().find('input').val();
-            if (button.hasClass('btn-plus')) {
-                var newVal = parseFloat(oldValue) + 1;
-            } else {
-                if (oldValue > 1) {
-                    var newVal = parseFloat(oldValue) - 1;
-                } else {
-                    newVal = 1;
-                }
-            }
-            button.parent().parent().find('input').val(newVal);
-        });
-        
-    })(jQuery);
-    
-    </script>
+    <script src="js/main.js"></script>
 </body>
 
 </html>

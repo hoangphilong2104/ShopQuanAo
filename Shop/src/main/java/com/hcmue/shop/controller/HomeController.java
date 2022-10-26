@@ -57,6 +57,24 @@ public class HomeController {
 		}
 	}
 	
+	//contact
+	@GetMapping("/contact")
+	public ModelAndView contact(Principal principal, HttpSession session, ModelMap model) {
+		int size_cart = 0;
+		@SuppressWarnings("unchecked")
+		List<Item> cart = (List<Item>) session.getAttribute("cart");
+		if(cart != null) {
+			size_cart = cart.size();
+		}
+		model.addAttribute("size_cart",size_cart);
+		if(principal != null) {
+			String username = principal.getName();
+			model.addAttribute("username",username);
+		}
+		model.addAttribute("size_cart",size_cart);
+		return new ModelAndView("views/contact");
+	}
+	
 	//Login
 	@GetMapping(value = "/login")
 	public ModelAndView loginPage(Model model) {
