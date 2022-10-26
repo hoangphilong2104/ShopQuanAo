@@ -50,7 +50,16 @@ public class KhachHangServices implements Services<KhachHangModel>{
 		}
 		return null;
 	}
-
+	
+	public KhachHangModel findOne(String username) {
+		KhachHang s = repo.findByTaiKhoan(username);
+		if(s!=null) {
+			KhachHangModel khachHangModel = new KhachHangModel(s);
+			return khachHangModel;
+		}
+		return null;
+	}
+	
 	@Override
 	public void save(KhachHangModel t) {
 		if(t!= null) {
