@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Loại Sản Phẩm</title>
+  <title>Nhà Cung Cấp</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="/static/css/main.css?v=1628755089081">
@@ -118,13 +118,13 @@
           <span class="menu-item-label">Sản Phẩm</span>
         </a>
       </li>
-      <li class="--set-active-tables-html">
+      <li class="active">
         <a th:href="@{/admin/nhacungcap}">
           <span class="icon"><i class="mdi mdi-table"></i></span>
           <span class="menu-item-label">Nhà Cung Cấp</span>
         </a>
       </li>
-      <li class="active">
+      <li class="--set-active-tables-html">
         <a th:href="@{/admin/loaisanpham}">
           <span class="icon"><i class="mdi mdi-table"></i></span>
           <span class="menu-item-label">Loại Sản Phẩm</span>
@@ -150,7 +150,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Loại Sản Phẩm</li>
+      <li>Nhà Cung Cấp</li>
     </ul>
   </div>
 </section>
@@ -158,7 +158,7 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Loại Sản Phẩm
+      Xảy ra lỗi
     </h1>
   </div>
 </section>
@@ -168,12 +168,12 @@
     <header class="card-header">
       <p class="card-header-title">
         <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-        Categories
+        Xảy ra lỗi
       </p>
       <div class="buttons right nowrap">
-       <form action="/admin/loaisanpham/add" method="get">
+       <form th:action="@{'/admin/'+${url}}" method="get">
          <button class="button small green --jb-modal"  data-target="sample-modal-2" type="submit">
-           <span class="icon"><i class="mdi mdi-plus"></i></span>
+           <span class="icon"><i class="mdi mdi-undo"></i></span>
          </button>
        </form>
       </div>
@@ -181,38 +181,20 @@
         <span class="icon"><i class="mdi mdi-reload"></i></span>
       </a>
     </header>
-            
-    <div class="card-content">
-      <form th:action="@{/admin/loaisanpham/add}" th:object="${item}" th:method="post">
-        <table>
-          <tr>
-            <th>ID</th>
-            <td><input type="text" th:field="*{MaLoaiSP}" class="form__field" required="required" placeholder="ID" readonly="readonly"></td>
-          </tr>
-          <tr>
-            <th>Tên Loại Sản Phẩm</th>
-            <td><input type="text" th:field="*{TenLoaiSP}" class="form__field" required="required" placeholder="Tên loại sản phẩm"></td>
-          </tr>
-          <tr>
-            <th>Slug</th>
-            <td><input type="text" th:field="*{Slug}" class="form__field" required="required" placeholder="Slug"></td>
-          </tr>          
-          <tr>
-          	<th></th>
-            <td class="actions-cell">
-              <div>
-                <button class="button small red --jb-modal" data-target="sample-modal" type="submit">
-                  <span class="icon"><i class="mdi mdi-check"></i></span>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </form>
-    </div>
-  </div>
-</section>
+	</div>
+	</section>
+	
+	<section class="is-hero-bar">
+	  <div style="text-align: center;">
+	      <h1>Xảy ra lỗi trong quá trình xử lý.</h1>
+	      <h1>Bạn vui lòng thử lại hoặc liên hệ bộ phận hỗ trợ.</h1>
 
+	  <div style="margin-left: 200px;">
+	  	<img alt="" src="/static/images/admin-error.gif">
+	  </div>
+	</section>
+
+	</div>
 <!-- Scripts below are for demo only -->
 <script type="text/javascript" src="/static/ajs/main.min.js?v=1628755089081"></script>
 

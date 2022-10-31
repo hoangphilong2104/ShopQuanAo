@@ -53,6 +53,12 @@
 			<!-- ELSE -->
 			<div th:unless="${stringError}">
 			</div>
+			<div th:if="${stringS}">
+			   <div style="color: red; text-align: center">Register Successful</div>
+			</div>
+			<!-- ELSE -->
+			<div th:unless="${stringError}">
+			</div>
           <!-- Submit button -->
           <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
           

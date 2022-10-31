@@ -76,12 +76,29 @@ public class KhachHangServices implements Services<KhachHangModel>{
 		
 	}
 
-	public void register(KhachHangModel t) {
-		if(t != null) {
-			passwordEncoder = new BCryptPasswordEncoder();
-			t.setMatKhau(passwordEncoder.encode(t.getMatKhau()));
-			save(t);
+	public boolean register(KhachHangModel t, String MatKhauXN) {
+		if(!t.getMatKhau().equals(MatKhauXN)) {
+			return false;
 		}
+		
+		if(t.getTaiKhoan().equals("admin")) {
+			return false;
+		}
+		KhachHangModel k = findOne(t.getTaiKhoan());
+		if(k != null) {
+			return false;
+		}
+		try {
+			if(t != null) {
+				passwordEncoder = new BCryptPasswordEncoder();
+				t.setMatKhau(passwordEncoder.encode(t.getMatKhau()));
+				save(t);
+				return true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
  
 }

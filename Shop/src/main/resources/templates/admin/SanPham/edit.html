@@ -1,75 +1,257 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+  xmlns:layout="http://www.w3.org/1999/xhtml"
+>
 <head>
-<meta charset="UTF-8">
-<title>San Pham</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sản Phẩm</title>
+
+  <!-- Tailwind is included -->
+  <link rel="stylesheet" href="/static/css/main.css?v=1628755089081">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/static/images/apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/static/images/favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="/static/images/favicon-16x16.png"/>
+  <link rel="mask-icon" href="/static/images/safari-pinned-tab.svg" color="#00b4b6"/>
+
+  <meta name="description" content="Admin One - free Tailwind dashboard">
+
+  <meta property="og:url" content="https://justboil.github.io/admin-one-tailwind/">
+  <meta property="og:site_name" content="JustBoil.me">
+  <meta property="og:title" content="Admin One HTML">
+  <meta property="og:description" content="Admin One - free Tailwind dashboard">
+  <meta property="og:image" content="https://justboil.me/images/one-tailwind/repository-preview-hi-res.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1920">
+  <meta property="og:image:height" content="960">
+
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Admin One HTML">
+  <meta property="twitter:description" content="Admin One - free Tailwind dashboard">
+  <meta property="twitter:image:src" content="https://justboil.me/images/one-tailwind/repository-preview-hi-res.png">
+  <meta property="twitter:image:width" content="1920">
+  <meta property="twitter:image:height" content="960">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130795909-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-130795909-1');
+  </script>
+
 </head>
-
 <body>
-	<div align="center">
-		<h1>San Pham</h1>
-		<form th:action="@{/admin/sanpham/add}" th:object="${item}" th:method="post">
-			<table>
-				<tr>
-					<td>MaSP</td>
-					<td><input type="text" th:field="*{MaSP}" required="required"></td>
-				</tr>
-				<tr>
-					<td>TenSP</td>
-					<td><input type="text" th:field="*{TenSP}"></td>
-				</tr>
-				<tr>
-					<td>MoTa</td>
-					<td><input type="text" th:field="*{MoTa}"></td>
-				</tr>
-				
-				<tr>
-					<td>GioiTinh</td>
-					<td><input type="text" th:field="*{GioiTinh}"></td>
-				</tr>
-				
-				<tr>
-					<td>GiaBan</td>
-					<td><input type="text" th:field="*{GiaBan}"></td>
-				</tr>
 
-				<tr>
-					<td>GiaNhap</td>
-					<td><input type="text" th:field="*{GiaNhap}"></td>
-				</tr>
+<div id="app">
 
-				<tr>
-					<td>Anh</td>
-					<td><input type="text" th:field="*{Anh}"></td>
-				</tr>
+<nav id="navbar-main" class="navbar is-fixed-top">
+  <div class="navbar-brand">
+    <a class="navbar-item mobile-aside-button">
+      <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
+    </a>
+    <div class="navbar-item">
+      <div class="control"><input placeholder="Search everywhere..." class="input"></div>
+    </div>
+  </div>
+  <div class="navbar-brand is-right">
+    <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
+      <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
+    </a>
+  </div>
+  <div class="navbar-menu" id="navbar-menu">
+    <div class="navbar-end">
+      <div class="navbar-item dropdown has-divider has-user-avatar">
+        <a class="navbar-link">
+          <div class="user-avatar">
+            <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
+          </div>
+          <div class="is-user-name"><span>Admin</span></div>
+          <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+        </a>
+        <div class="navbar-dropdown">
+          <a th:href="@{/}" class="navbar-item">
+            <span class="icon"><i class="mdi mdi-home"></i></span>
+            <span>Home</span>
+          </a>
+          <hr class="navbar-divider">
+          <a class="navbar-item" th:href="@{/logout}">
+            <span class="icon"><i class="mdi mdi-logout"></i></span>
+            <span>Log Out</span>
+          </a>
+        </div>
+  </div>
+</nav>
 
-				<tr>
-					<td>Slug</td>
-					<td><input type="text" th:field="*{Slug}"></td>
-				</tr>
+<aside class="aside is-placed-left is-expanded">
+  <div class="aside-tools">
+    <div style="margin-left: 70px;">
+      Admin
+    </div>
+  </div>
+  <div class="menu is-menu-main">
+    <p class="menu-label">General</p>
+    <ul class="menu-list">
+      <li class="--set-active-index-html">
+        <a th:href="@{/admin}">
+          <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+          <span class="menu-item-label">Dashboard</span>
+        </a>
+      </li>
+    </ul>
+    <p class="menu-label">Others</p>
+    <ul class="menu-list">
+      <li class="--set-active-tables-html">
+        <a th:href="@{/admin/khachhang}">
+          <span class="icon"><i class="mdi mdi-table"></i></span>
+          <span class="menu-item-label">Khách Hàng</span>
+        </a>
+      </li>
+      <li class="active">
+        <a th:href="@{/admin/sanpham}">
+          <span class="icon"><i class="mdi mdi-table"></i></span>
+          <span class="menu-item-label">Sản Phẩm</span>
+        </a>
+      </li>
+      <li class="--set-active-tables-html">
+        <a th:href="@{/admin/nhacungcap}">
+          <span class="icon"><i class="mdi mdi-table"></i></span>
+          <span class="menu-item-label">Nhà Cung Cấp</span>
+        </a>
+      </li>
+      <li class="--set-active-tables-html">
+        <a th:href="@{/admin/loaisanpham}">
+          <span class="icon"><i class="mdi mdi-table"></i></span>
+          <span class="menu-item-label">Loại Sản Phẩm</span>
+        </a>
+      </li>
+      <li class="--set-active-tables-html">
+        <a th:href="@{/admin/hoadon}">
+          <span class="icon"><i class="mdi mdi-table"></i></span>
+          <span class="menu-item-label">Hóa Đơn</span>
+        </a>
+      </li>
+      <li class="--set-active-tables-html">
+        <a th:href="@{/admin/chitiethoadon}">
+          <span class="icon"><i class="mdi mdi-table"></i></span>
+          <span class="menu-item-label">Chi Tiết Hóa Đơn</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
 
-				<tr>
-					<td>MaLoaiSP</td>
-					<td><input type="text" th:field="*{MaLoaiSP}"></td>
-				</tr>
+<section class="is-title-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <ul>
+      <li>Admin</li>
+      <li>Sản Phẩm</li>
+    </ul>
+  </div>
+</section>
 
-				<tr>
-					<td>MaNCC</td>
-					<td><input type="text" th:field="*{MaNCC}"></td>
-				</tr>
+<section class="is-hero-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <h1 class="title">
+      Sản Phẩm
+    </h1>
+  </div>
+</section>
 
-				<tr>
-					<td>SoLuongTon</td>
-					<td><input type="text" th:field="*{SoLuongTon}"></td>
-				</tr>
+  <section class="section main-section">
+  <div class="card has-table">
+    <header class="card-header">
+      <p class="card-header-title">
+        <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+        Products
+      </p>
+      <div class="buttons right nowrap">
+       <form action="/admin/sanpham/add" method="get">
+         <button class="button small green --jb-modal"  data-target="sample-modal-2" type="submit">
+           <span class="icon"><i class="mdi mdi-plus"></i></span>
+         </button>
+       </form>
+      </div>
+      <a href="#" class="card-header-icon">
+        <span class="icon"><i class="mdi mdi-reload"></i></span>
+      </a>
+    </header>
+            
+    <div class="card-content">
+      <form th:action="@{/admin/sanpham/add}" th:object="${item}" th:method="post">
+        <table>
+          <tr>
+            <th>ID</th>
+            <td><input type="text" th:field="*{MaSP}" required="required" readonly class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Tên</th>
+            <td><input type="text" th:field="*{TenSP}" required="required" placeholder="Tên" class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Mô tả</th>
+            <td><input type="text" th:field="*{MoTa}" required="required" placeholder="Mô tả" class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Giới tính</th>
+            <td><input type="text" th:field="*{GioiTinh}" required="required" placeholder="Giới tính" class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Giá bán</th>
+            <td><input type="text" th:field="*{GiaBan}" required="required" placeholder="Giá bán" class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Giá nhập</th>
+            <td><input type="text" th:field="*{GiaNhap}" required="required" placeholder="Giá nhập" class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Ảnh</th>
+            <td><input type="text" th:field="*{Anh}" required="required" placeholder="Ảnh" class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Slug</th>
+            <td><input type="text" th:field="*{Slug}" required="required" placeholder="Slug" class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Mã loại sản phẩm</th>
+            <td><input type="text" th:field="*{MaLoaiSP}" required="required" placeholder="Mã loại sản phẩm" class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Mã nhà cung cấp</th>
+            <td><input type="text" th:field="*{MaNCC}" required="required" placeholder="Mã nhà cung cấp" class="form__field"></td>
+          </tr>
+          <tr>
+            <th>Số lượng tồn</th>
+            <td><input type="text" th:field="*{SoLuongTon}" required="required" placeholder="Số lượng tồn" class="form__field"></td>
+          </tr>
+          <tr>
+          	<th></th>
+            <td class="actions-cell">
+              <div>
+                <button class="button small red --jb-modal" data-target="sample-modal" type="submit">
+                  <span class="icon"><i class="mdi mdi-check"></i></span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+</section>
 
-				<tr>
-					<td><button type="submit">Save</button></td>
-				</tr>
-			</table>
-		</form>
-	</div>
+<!-- Scripts below are for demo only -->
+<script type="text/javascript" src="/static/ajs/main.min.js?v=1628755089081"></script>
+
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=658339141622648&ev=PageView&noscript=1"/></noscript>
+
+<!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+
 </body>
-
-
 </html>

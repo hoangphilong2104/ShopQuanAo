@@ -15,9 +15,7 @@ public class TaiKhoanServices implements UserDetailsService{
      
     @Override
     public UserDetails loadUserByUsername(String TaiKhoan) throws UsernameNotFoundException {
-    	System.err.println(">>>>>>>>>>>>>>>> "+ TaiKhoan +" <<<<<<<<<<<<<<");
         KhachHang khachHang = repo.findByTaiKhoan(TaiKhoan);
-        System.err.println(">>>>>>>>>>>>>>>> "+ khachHang +" <<<<<<<<<<<<<<");
         if (khachHang == null) {
             throw new UsernameNotFoundException("Tai Khoan Khong Tim Thay");
         }

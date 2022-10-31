@@ -2,13 +2,22 @@ package com.hcmue.shop.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,16 +27,19 @@ import com.hcmue.shop.model.KhachHangModel;
 import com.hcmue.shop.model.LoaiSanPhamModel;
 import com.hcmue.shop.model.NhaCungCapModel;
 import com.hcmue.shop.model.SanPhamModel;
+import com.hcmue.shop.model.TransactionModel;
 import com.hcmue.shop.services.ChiTietHoaDonServices;
 import com.hcmue.shop.services.HoaDonServices;
 import com.hcmue.shop.services.KhachHangServices;
 import com.hcmue.shop.services.LoaiSanPhamServices;
 import com.hcmue.shop.services.NhaCungCapServices;
 import com.hcmue.shop.services.SanPhamServices;
+import com.hcmue.shop.services.TransactionServices;
 
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
+	
 	@Autowired
 	private ChiTietHoaDonServices chiTietHoaDonServices;
 	
@@ -46,9 +58,31 @@ public class AdminController {
 	@Autowired
 	private SanPhamServices sanPhamServices;
 	
+	@Autowired
+	private TransactionServices transactionServices;
+	
 	//Dash board
 	@GetMapping("")
-	public ModelAndView admin() {
+	public ModelAndView admin(ModelMap model) {
+		//Khach hang
+		List<KhachHangModel> listKH = khachHangServices.listAll();
+		int client = 0;
+		for(int i=0; i<listKH.size();i++) {
+			client++;
+		}
+		model.addAttribute("client", client);
+		
+		//HoaDon
+		List<HoaDonModel> listHD = hoaDonServices.listAll();
+		int price = 0;
+		for(int i=0; i<listHD.size();i++) {
+			price+=listHD.get(i).getDonGia();
+		}
+		model.addAttribute("price", price);
+		
+		//Transactions
+		List<TransactionModel> transactions = transactionServices.listAll();
+		model.addAttribute("transactions",transactions);
 		return new ModelAndView("admin/DashBoard");
 	}
 	
@@ -82,8 +116,13 @@ public class AdminController {
 	
 	@PostMapping("/chitiethoadon/add")
 	public ModelAndView saveChiTietHoaDon(Model model, @ModelAttribute("item") ChiTietHoaDonModel chiTietHoaDonModel) {
-		chiTietHoaDonServices.save(chiTietHoaDonModel);
-		return new ModelAndView("redirect:/admin/chitiethoadon");
+		try {
+			chiTietHoaDonServices.save(chiTietHoaDonModel);
+			return new ModelAndView("redirect:/admin/chitiethoadon");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:/admin/error?url=chitiethoadon/add");
 	}
 	
 	//edit
@@ -126,8 +165,13 @@ public class AdminController {
 	
 	@PostMapping("/hoadon/add")
 	public ModelAndView saveHoaDon(Model model, @ModelAttribute("item") HoaDonModel hoaDonModel) {
-		hoaDonServices.save(hoaDonModel);
-		return new ModelAndView("redirect:/admin/hoadon");
+		try {
+			hoaDonServices.save(hoaDonModel);
+			return new ModelAndView("redirect:/admin/hoadon");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:/admin/error?url=hoadon/add");
 	}
 	
 	//edit
@@ -170,8 +214,14 @@ public class AdminController {
 	
 	@PostMapping("/khachhang/add")
 	public ModelAndView saveKhachHang(Model model, @ModelAttribute("item") KhachHangModel khachHangModel) {
-		khachHangServices.save(khachHangModel);
-		return new ModelAndView("redirect:/admin/khachhang");
+		try {
+			khachHangServices.save(khachHangModel);
+			return new ModelAndView("redirect:/admin/khachhang");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:/admin/error?url=khachhang/add");
+		
 	}
 	
 	//edit
@@ -214,8 +264,13 @@ public class AdminController {
 	
 	@PostMapping("/loaisanpham/add")
 	public ModelAndView saveLoaiSanPham(Model model, @ModelAttribute("item") LoaiSanPhamModel loaiSanPhamModel) {
-		loaiSanPhamServices.save(loaiSanPhamModel);
-		return new ModelAndView("redirect:/admin/loaisanpham");
+		try {
+			loaiSanPhamServices.save(loaiSanPhamModel);
+			return new ModelAndView("redirect:/admin/loaisanpham");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:/admin/error?url=loaisanpham/add");
 	}
 	
 	//edit
@@ -258,8 +313,13 @@ public class AdminController {
 	
 	@PostMapping("/nhacungcap/add")
 	public ModelAndView saveNhaCungCap(Model model, @ModelAttribute("item") NhaCungCapModel nhaCungCapModel) {
-		nhaCungCapServices.save(nhaCungCapModel);
-		return new ModelAndView("redirect:/admin/nhacungcap");
+		try {
+			nhaCungCapServices.save(nhaCungCapModel);
+			return new ModelAndView("redirect:/admin/nhacungcap");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:/admin/error?url=nhacungcap/add");
 	}
 	
 	//edit
@@ -302,8 +362,13 @@ public class AdminController {
 	
 	@PostMapping("/sanpham/add")
 	public ModelAndView saveSanPham(Model model, @ModelAttribute("item") SanPhamModel sanPhamModel) {
-		sanPhamServices.save(sanPhamModel);
-		return new ModelAndView("redirect:/admin/sanpham");
+		try {
+			sanPhamServices.save(sanPhamModel);
+			return new ModelAndView("redirect:/admin/sanpham");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return new ModelAndView("redirect:/admin/error?url=sanpham/add");
 	}
 	
 	//edit
@@ -320,5 +385,33 @@ public class AdminController {
 		sanPhamServices.delete(id);
 	return new ModelAndView("redirect:/admin/sanpham");
 	}
-		
+	
+	/*
+	 * No: 			7
+	 * Class: 		Error
+	 * Comment:		
+	 * 
+	 */
+	
+	@GetMapping("/error")
+	public ModelAndView errorPage(ModelMap model, @RequestParam("url") String url) {
+		if(url == null || url.equals("")) {
+			url = "error1";
+		}
+		model.addAttribute("url",url);
+	return new ModelAndView("admin/admin_error");
+	}
+	
+	@GetMapping("/error1")
+	public ModelAndView errorPage1() {
+	return new ModelAndView("redirect:/admin");
+	}
+	
+	@GetMapping("/error2")
+	public ModelAndView errorPage2(ModelMap model) {
+		transactionServices.listAll();
+		String url = "admin/";
+		model.addAttribute("url",url);
+	return new ModelAndView("admin/admin_error");
+	}
 }

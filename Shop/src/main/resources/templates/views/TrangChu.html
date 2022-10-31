@@ -177,9 +177,9 @@
                         </div>
                         
                         <div th:if="${username}">
-						   
 						   <div class="navbar-nav ml-auto py-0">
 						  		 <a th:text=" 'Hi, ' + ${username}" class="nav-item nav-link" style="color: red"></a>
+						  		 <a th:if="${username == 'admin'}" th:href="@{/admin}" class="nav-item nav-link">Admin</a>
 	                            <a th:href="@{/logout}" class="nav-item nav-link">Logout</a>
                         	</div>
 						</div>

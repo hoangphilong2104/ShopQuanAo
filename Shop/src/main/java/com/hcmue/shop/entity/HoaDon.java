@@ -30,7 +30,10 @@ public class HoaDon {
 	
 	@Column(name = "MaKH")
 	private int MaKH;
-
+	
+	@Column(name = "DonGia")
+	private double DonGia; 
+	
 	public int getMaHD() {
 		return MaHD;
 	}
@@ -57,15 +60,14 @@ public class HoaDon {
 		NgayGiao = h.getNgayGiao();
 		TinhTrang = h.getTinhTrang();
 		MaKH = h.getMaKH();
+		DonGia = h.getDonGia();
 	}
 
 	public HoaDon() {
 	}
 
-	@Override
-	public String toString() {
-		return "HoaDon [MaHD=" + MaHD + ", NgayDat=" + NgayDat + ", NgayGiao=" + NgayGiao + ", TinhTrang=" + TinhTrang
-				+ ", MaKH=" + MaKH + "]";
+	public double getDonGia() {
+		return DonGia;
 	}
 	
 }

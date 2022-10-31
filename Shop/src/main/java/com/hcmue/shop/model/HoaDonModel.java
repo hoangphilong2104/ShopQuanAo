@@ -1,6 +1,10 @@
 package com.hcmue.shop.model;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
+
+import javax.persistence.Column;
 
 import com.hcmue.shop.entity.HoaDon;
 
@@ -15,6 +19,16 @@ public class HoaDonModel {
 	private String TinhTrang;
 	
 	private int MaKH;
+	
+	private double DonGia;
+	
+	public double getDonGia() {
+		return DonGia;
+	}
+
+	public void setDonGia(double donGia) {
+		DonGia = donGia;
+	}
 
 	public int getMaHD() {
 		return MaHD;
@@ -62,8 +76,14 @@ public class HoaDonModel {
 		NgayGiao = h.getNgayGiao();
 		TinhTrang = h.getTinhTrang();
 		MaKH = h.getMaKH();
+		DonGia = h.getDonGia();
 	}
 	
 	public HoaDonModel() {
+		Date date = new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, +7);
+		this.NgayDat = new Timestamp(date.getTime());
+		this.NgayGiao = new Timestamp(cal.getTime().getTime());
 	}
 }

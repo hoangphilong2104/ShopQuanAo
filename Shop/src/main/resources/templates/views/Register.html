@@ -23,9 +23,16 @@
                 <a href="" class="text-decoration-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold" ><span class="text-primary font-weight-bold border px-3 mr-1" >Register</span></h1>
                 </a>
-     	</div>  
+     	</div>
+     	<div th:if="${stringError}">
+     			<br/>
+			   <div style="color: red; text-align: center">An error occurred while registering, you need to check again</div>
+				<br/>
+			</div>
+			<!-- ELSE -->
+			<div th:unless="${stringError}">
+			</div>
 		<form th:action="@{/register}" method="post" th:object="${khachHang}">
-			
 			<!-- Name input -->
           <div class="form-outline mb-4">
           	<label class="form-label" for="form1Example13" style="font-weight: bold;">Họ và tên:</label>
@@ -54,6 +61,12 @@
             
           </div>
 			
+			<!-- Confirm Password input -->
+          <div class="form-outline mb-4">
+          	<label class="form-label" for="form1Example23" style="font-weight: bold;">Xác nhận mật khẩu:</label>
+            <input type="password" id="form1Example23" class="form-control" placeholder="Xác nhận mật khẩu" name="MatKhauXN" required="required"/>
+          </div>
+          
 			<!-- Dia Chi input -->
           <div class="form-outline mb-4">
           	<label class="form-label" for="form1Example13" style="font-weight: bold;">Địa chỉ:</label>

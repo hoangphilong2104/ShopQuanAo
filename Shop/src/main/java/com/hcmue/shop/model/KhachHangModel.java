@@ -1,6 +1,8 @@
 package com.hcmue.shop.model;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 
 import com.hcmue.shop.entity.KhachHang;
 
@@ -108,6 +110,8 @@ public class KhachHangModel {
 
 	public KhachHangModel() {
 		this.TrangThai = true;
+		Date date = new Date();
+		this.NgaySinh = new Timestamp(date.getTime());
 	}
 	
 	public KhachHangModel(KhachHang k) {

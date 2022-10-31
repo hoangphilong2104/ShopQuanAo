@@ -21,12 +21,14 @@ USE `qlshopthoitrang`;
 
 -- Dumping structure for table qlshopthoitrang.chitiethoadon
 CREATE TABLE IF NOT EXISTS `chitiethoadon` (
+  `MaCTHD` int(11) NOT NULL AUTO_INCREMENT,
   `MaHD` int(11) NOT NULL,
   `MaSP` int(11) NOT NULL,
   `SoLuong` int(11) NOT NULL,
   `DonGia` decimal(18,0) NOT NULL,
-  PRIMARY KEY (`MaHD`,`MaSP`),
+  PRIMARY KEY (`MaCTHD`) USING BTREE,
   KEY `MaSP` (`MaSP`),
+  KEY `MaHD` (`MaHD`),
   CONSTRAINT `chitiethoadon_ibfk_1` FOREIGN KEY (`MaHD`) REFERENCES `hoadon` (`MaHD`),
   CONSTRAINT `chitiethoadon_ibfk_2` FOREIGN KEY (`MaSP`) REFERENCES `sanpham` (`MaSP`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -41,6 +43,7 @@ CREATE TABLE IF NOT EXISTS `hoadon` (
   `NgayGiao` date NOT NULL,
   `TinhTrang` varchar(50) CHARACTER SET utf8 NOT NULL,
   `MaKH` int(11) NOT NULL,
+  `DonGia` double(18,0) NOT NULL,
   PRIMARY KEY (`MaHD`),
   KEY `MaKH` (`MaKH`),
   CONSTRAINT `hoadon_ibfk_1` FOREIGN KEY (`MaKH`) REFERENCES `khachhang` (`MaKH`)

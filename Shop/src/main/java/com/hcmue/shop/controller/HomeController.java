@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,6 +38,16 @@ public class HomeController {
 	
 	@Autowired
 	private KhachHangServices khachHangServices;
+	
+	
+	@RequestMapping(value = "/processHome")
+	public ModelAndView userProcessHome(Principal principal) {
+		String username = principal.getName();
+		if(username.equals("admin")) {
+			return new ModelAndView("redirect:/admin");
+		}
+		return new ModelAndView("redirect:/");
+	}
 	
 	//Home Page
 	@RequestMapping(value = "")
@@ -77,7 +88,10 @@ public class HomeController {
 	
 	//Login
 	@GetMapping(value = "/login")
-	public ModelAndView loginPage(Model model) {
+	public ModelAndView loginPage(Model model,Principal principal) {
+		if(principal != null) {
+			return new ModelAndView("redirect:/logout");
+		}
 		model.addAttribute("items", new KhachHangModel());
 		return new ModelAndView("views/Login");
 	}
@@ -98,10 +112,30 @@ public class HomeController {
 	}
 	
 	//Register
+		@GetMapping(value = "/register_error")
+		public ModelAndView registerPageError(Model model) {
+			model.addAttribute("khachHang", new KhachHangModel());
+			model.addAttribute("stringError", "An error occurred while registering, you need to check again");
+			return new ModelAndView("views/Register");
+		}
+		
+	//Register
 	@PostMapping(value = "/register")
-	public ModelAndView registerProcessPage(Model model, @ModelAttribute("khachHang") KhachHangModel khachHang) {
-		khachHangServices.register(khachHang);
-		return new ModelAndView("redirect:/login");
+	public ModelAndView registerProcessPage(Model model, @ModelAttribute("khachHang") KhachHangModel khachHang, @RequestParam("MatKhauXN") String MatKhauXN) {
+		Boolean register = khachHangServices.register(khachHang,MatKhauXN);
+		if(register == true) {
+			return new ModelAndView("redirect:/login_s");
+		}else {
+			return new ModelAndView("redirect:/register_error");
+		}
+		
+	}
+	
+	@GetMapping(value = "/login_s")
+	public ModelAndView loginS(Model model) {
+		model.addAttribute("stringS","Register Successful");
+		model.addAttribute("items", new KhachHangModel());
+		return new ModelAndView("views/Login");
 	}
 	
 	// Logout
@@ -111,7 +145,7 @@ public class HomeController {
 		if (auth != null) {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return new ModelAndView("redirect:/");
+		return new ModelAndView("redirect:/login");
 	}
 	
 	@RequestMapping(value = "static/css/{files}", method = RequestMethod.GET)
@@ -136,6 +170,23 @@ public class HomeController {
 	public ResponseEntity<ByteArrayResource> getJs(@PathVariable("files") String files){
 			try {
 				Path filename = Paths.get("src/main/resources/static/js/",files);
+				byte[] buffer = Files.readAllBytes(filename);
+				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
+				return ResponseEntity.ok()
+						.contentLength(buffer.length)
+						//.contentType(MediaType.parseMediaType(""))
+						.body(byteArrayResource);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+		return ResponseEntity.badRequest().build();
+	}
+	
+	@RequestMapping(value = "static/ajs/{files}", method = RequestMethod.GET)
+	@ResponseBody
+	public ResponseEntity<ByteArrayResource> getAJs(@PathVariable("files") String files){
+			try {
+				Path filename = Paths.get("src/main/resources/static/ajs/",files);
 				byte[] buffer = Files.readAllBytes(filename);
 				ByteArrayResource byteArrayResource = new ByteArrayResource(buffer);
 				return ResponseEntity.ok()

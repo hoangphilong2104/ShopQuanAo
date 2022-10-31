@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -50,6 +49,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 	@Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(authenticationProvider());
+        
+        // account admin/admin2022
+        auth.inMemoryAuthentication().passwordEncoder(passwordEncoder()).withUser("admin")
+     				.password("$2a$10$durSlu.dBqqMs1xMSE2Nn.09vcLBPYbD6/Q8OWScmkOMhh1sRX30q").roles("ADMIN");
     }
 	
 	@Override
@@ -57,22 +60,24 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
 		//all request
 //		http.authorizeRequests().anyRequest().permitAll();
 		
-		//login
+		http.authorizeRequests().antMatchers("/admin/**").access("hasRole('ADMIN')");
+		
+		http.authorizeRequests().antMatchers("/admin").access("hasRole('ADMIN')");
+		
+		//Admin
 		http.authorizeRequests()
-        .antMatchers("/admin/**").authenticated()
-        .anyRequest().permitAll()
-        .and()
-        .formLogin()
-	        .loginPage("/login")
-	        .permitAll()
-	        .usernameParameter("TaiKhoan")
-	        .passwordParameter("MatKhau")
-	        .failureUrl("/login_error")
-	        .defaultSuccessUrl("/")
+    	.and()
+		.formLogin()
+			.loginPage("/login")
+			.permitAll()
+			.usernameParameter("TaiKhoan")
+			.passwordParameter("MatKhau")
+			.failureUrl("/login_error")
+	        .defaultSuccessUrl("/processHome")
+    	.permitAll()
         .and()
         .logout()
         	.logoutSuccessUrl("/").permitAll();
-		
 //		http.authorizeRequests()
 //			.antMatchers("/","/home").access("hasRole('USER')")
 //			.antMatchers("/admin/**").access("hasRole('ADMIN')")

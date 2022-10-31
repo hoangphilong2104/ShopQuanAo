@@ -59,5 +59,10 @@ public class HoaDonServices implements Services<HoaDonModel>{
 	public void delete(int id) {
 		//Not have delete
 	}
- 
+	
+	public HoaDonModel findByIdDesc(){
+		List<HoaDon> hoadon = repo.findByIdDesc();
+		HoaDonModel hoaDonModel = new HoaDonModel(hoadon.get(0));
+		return hoaDonModel;
+	}
 }

@@ -4,6 +4,8 @@ import com.hcmue.shop.entity.ChiTietHoaDon;
 
 public class ChiTietHoaDonModel {
 	
+	private int MaCTHD;
+	
 	private int MaHD;
 	
 	private int MaSP;
@@ -45,13 +47,27 @@ public class ChiTietHoaDonModel {
 	}
 	
 	public ChiTietHoaDonModel(ChiTietHoaDon c) {
+		MaCTHD = c.getMaCTHD();
 		MaHD = c.getMaHD();
 		MaSP = c.getMaSP();
 		DonGia = c.getDonGia();
 		SoLuong = c.getSoLuong();
 	}
 	
+	public ChiTietHoaDonModel(HoaDonModel c) {
+		MaHD = c.getMaHD();
+	}
+	
 	public ChiTietHoaDonModel() {
 	}
+
+	public int getMaCTHD() {
+		return MaCTHD;
+	}
+
+	public void setMaCTHD(int maCTHD) {
+		MaCTHD = maCTHD;
+	}
+	
 	
 }
