@@ -63,7 +63,7 @@ public class SanPhamController {
 			model.addAttribute("username",username);
 		}
 		
-		ModelAndView modelAndView = new ModelAndView("views/SanPham/show");
+		ModelAndView modelAndView = new ModelAndView("views/SanPham");
 		PageRequest pageable = PageRequest.of(page - 1, 6);
         Page<SanPham> productPage = ser.getPaginated(pageable);
         int totalPages = productPage.getTotalPages();
@@ -82,6 +82,7 @@ public class SanPhamController {
         modelAndView.addObject("urlpage", urlpage);
         modelAndView.addObject("activeArticleList", true);
         modelAndView.addObject("articleList", productPage.getContent());
+        model.addAttribute("url","sanpham/page/");
         return modelAndView;
     }
 	

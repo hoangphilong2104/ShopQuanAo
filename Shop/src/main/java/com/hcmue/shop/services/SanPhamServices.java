@@ -69,5 +69,14 @@ public class SanPhamServices implements Services<SanPhamModel>{
 		return list;
 	}
 	
+	public Page<SanPham> getPaginated(PageRequest pageable,int id) {
+		Page<SanPham> list = repo.findAllSanPham(pageable,id);
+		return list;
+	}
+	
+	public Page<SanPham> getPaginatedGT(PageRequest pageable,String GioiTinh) {
+		Page<SanPham> list = repo.findAllSanPhamGT(pageable,GioiTinh);
+		return list;
+	}
  
 }

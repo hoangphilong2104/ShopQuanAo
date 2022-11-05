@@ -22,10 +22,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link th:href="@{/static/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="../../static/css/style.css" rel="stylesheet">
+    <link th:href="@{/static/css/style.css}" rel="stylesheet">
     
     <script>
         document.addEventListener("DOMContentLoaded", function(event) { 
@@ -114,43 +114,43 @@
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Áo thun <i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" class="dropdown-item">Áo thun nam</a>
-                                <a href="" class="dropdown-item">Áo thun nữ</a>
+                                <a th:href="@{/categories/ao-thun-nam}" class="dropdown-item">Áo thun nam</a>
+                                <a th:href="@{/categories/ao-thun-nu}" class="dropdown-item">Áo thun nữ</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Áo sơ mi <i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" class="dropdown-item">Áo sơ mi nam</a>
-                                <a href="" class="dropdown-item">Áo sơ mi nữ</a>
+                                <a th:href="@{/categories/ao-so-mi-nam}" class="dropdown-item">Áo sơ mi nam</a>
+                                <a th:href="@{/categories/ao-so-mi-nu}" class="dropdown-item">Áo sơ mi nữ</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Quần short <i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" class="dropdown-item">Quần short nam</a>
-                                <a href="" class="dropdown-item">Quần short nữ</a>
+                                <a th:href="@{/categories/quan-short-nam}" class="dropdown-item">Quần short nam</a>
+                                <a th:href="@{/categories/quan-short-nu}" class="dropdown-item">Quần short nữ</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Quần jeans <i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" class="dropdown-item">Quần jeans nam</a>
-                                <a href="" class="dropdown-item">Quần jeans nữ</a>
+                                <a th:href="@{/categories/quan-jean-nam}" class="dropdown-item">Quần jeans nam</a>
+                                <a th:href="@{/categories/quan-jean-nu}" class="dropdown-item">Quần jeans nữ</a>
                             </div>
                         </div>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Quần jogger <i class="fa fa-angle-down float-right mt-1"></i></a>
                             <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
-                                <a href="" class="dropdown-item">Quần jogger nam</a>
-                                <a href="" class="dropdown-item">Quần jogger nữ</a>
+                                <a th:href="@{/categories/quan-jogger-nam}" class="dropdown-item">Quần jogger nam</a>
+                                <a th:href="@{/categories/quan-jogger-nu}" class="dropdown-item">Quần jogger nữ</a>
                             </div>
                         </div>
-                        <a href="" class="nav-item nav-link">Chân váy</a>
-                        <a href="" class="nav-item nav-link">Đầm nữ</a>
-                        <a href="" class="nav-item nav-link">Quần tây nam</a>
-                        <a href="" class="nav-item nav-link">Quần kaki nam</a>
-                        <a href="" class="nav-item nav-link">Quần thun nữ</a>
+                        <a th:href="@{/categories/chan-vay}" class="nav-item nav-link">Chân váy</a>
+                        <a th:href="@{/categories/dam-nu}" class="nav-item nav-link">Đầm nữ</a>
+                        <a th:href="@{/categories/quan-tay-nam}" class="nav-item nav-link">Quần tây nam</a>
+                        <a th:href="@{/categories/quan-kaki-nam}" class="nav-item nav-link">Quần kaki nam</a>
+                        <a th:href="@{/categories/quan-thun-nu}" class="nav-item nav-link">Quần thun nữ</a>
                     </div>
                 </nav>
             </div>
@@ -232,7 +232,7 @@
                         </div>
                         
                     </div>
-                    <img alt="" src="static/images/rabbit.gif" width="500px" height="250">
+                    <img alt="" th:src="@{/static/images/rabbit.gif}" width="500px" height="250">
                 </div>
                 
             </div>
@@ -240,7 +240,7 @@
         </div>
         <div class="row border-top border-light mx-xl-5 py-4">
             <div class="col-md-6 px-xl-0 text-center text-md-right">
-                <img src="../../static/images/payments.png" alt="" height="50px" width="250px">
+                <img th:src="@{/static/images/payments.png}" alt="" height="50px" width="250px">
             </div>
         </div>
     </div>
@@ -254,15 +254,15 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script th:src="@{/static/lib/easing/easing.min.js}"></script>
+    <script th:src="@{/static/lib/owlcarousel/owl.carousel.min.js}"></script>
 
     <!-- Contact Javascript File -->
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
+	<script th:src="@{/static/mail/jqBootstrapValidation.min.js}"></script>
+	<script th:src="@{/static/mail/contact.js}"></script>
+	
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script th:src="@{/static/js/main.js}"></script>
 </body>
 
 </html>

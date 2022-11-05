@@ -4,9 +4,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.hcmue.shop.entity.LoaiSanPham;
+import com.hcmue.shop.entity.SanPham;
 import com.hcmue.shop.model.LoaiSanPhamModel;
 import com.hcmue.shop.repository.LoaiSanPhamRepository;
 
@@ -46,7 +49,16 @@ public class LoaiSanPhamServices implements Services<LoaiSanPhamModel>{
 		}
 		return null;
 	}
-
+	
+	public LoaiSanPhamModel findOne(String slug) {
+		LoaiSanPham s = repo.getBySlug(slug);
+		if(s != null) {
+			LoaiSanPhamModel loaiSanPhamModel = new LoaiSanPhamModel(s);
+			return loaiSanPhamModel;
+		}
+		return null;
+	}
+	
 	@Override
 	public void save(LoaiSanPhamModel t) {
 		if(t != null) {
@@ -61,5 +73,6 @@ public class LoaiSanPhamServices implements Services<LoaiSanPhamModel>{
 		s.setTrangThai(false);
 		save(s);
 	}
- 
+	
+	
 }
