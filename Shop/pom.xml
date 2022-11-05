@@ -88,10 +88,6 @@
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
     			<artifactId>appengine-maven-plugin</artifactId>
-    			<configuration>
-			       <deploy.stopPreviousVersion>true</deploy.stopPreviousVersion>
-			       <cloudSdkHome>/usr/foo/path/to/cloudsdk</cloudSdkHome>
-			     </configuration>
 			</plugin>
 		</plugins>
 	</build>
