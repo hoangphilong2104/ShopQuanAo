@@ -1,6 +1,5 @@
 package com.hcmue.shop.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.hcmue.shop.model.SanPhamModel;
-
 
 @Entity
 @Table(name = "sanpham")
@@ -118,13 +116,5 @@ public class SanPham {
 	public SanPham() {
 		this.TrangThai = true;
 	}
-
-	@Override
-	public String toString() {
-		return "SanPham [MaSP=" + MaSP + ", TenSP=" + TenSP + ", MoTa=" + MoTa + ", GioiTinh=" + GioiTinh + ", GiaBan="
-				+ GiaBan + ", GiaNhap=" + GiaNhap + ", Anh=" + Anh + ", Slug=" + Slug + ", MaLoaiSP=" + MaLoaiSP
-				+ ", MaNCC=" + MaNCC + ", SoLuongTon=" + SoLuongTon + ", TrangThai=" + TrangThai + "]";
-	}
-	
 	
 }

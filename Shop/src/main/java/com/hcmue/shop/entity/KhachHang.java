@@ -105,13 +105,5 @@ public class KhachHang {
 	public KhachHang() {
 		this.TrangThai = true;
 	}
-
-	@Override
-	public String toString() {
-		return "KhachHang [MaKH=" + MaKH + ", TenKH=" + TenKH + ", GioiTinh=" + GioiTinh + ", TaiKhoan=" + TaiKhoan
-				+ ", MatKhau=" + MatKhau + ", DiaChi=" + DiaChi + ", Email=" + Email + ", NgaySinh=" + NgaySinh
-				+ ", TrangThai=" + TrangThai + "]";
-	}
-	
 	
 }

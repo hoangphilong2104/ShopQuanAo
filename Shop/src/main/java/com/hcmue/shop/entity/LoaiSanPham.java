@@ -1,6 +1,5 @@
 package com.hcmue.shop.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,12 +51,6 @@ public class LoaiSanPham {
 
 	public LoaiSanPham() {
 		this.TrangThai = true;
-	}
-
-	@Override
-	public String toString() {
-		return "LoaiSanPham [MaLoaiSP=" + MaLoaiSP + ", TenLoaiSP=" + TenLoaiSP + ", Slug=" + Slug + ", TrangThai="
-				+ TrangThai + "]";
 	}
 	
 }

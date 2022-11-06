@@ -1,6 +1,5 @@
 package com.hcmue.shop.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -60,6 +59,5 @@ public class ChiTietHoaDon {
 
 	public ChiTietHoaDon() {
 	}
-	
 	
 }

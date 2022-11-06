@@ -147,7 +147,7 @@ public class HomeController {
 		}
 		return new ModelAndView("redirect:/login");
 	}
-	
+	/*
 	@RequestMapping(value = "static/css/{files}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<ByteArrayResource> getCss(@PathVariable("files") String files){
@@ -317,4 +317,6 @@ public class HomeController {
 			}
 		return ResponseEntity.badRequest().build();
 	}
+	
+	*/
 }

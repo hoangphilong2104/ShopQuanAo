@@ -1,6 +1,5 @@
 package com.hcmue.shop.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -61,12 +60,5 @@ public class NhaCungCap {
 	public NhaCungCap() {
 		this.TrangThai = true;
 	}
-
-	@Override
-	public String toString() {
-		return "NhaCungCap [MaNCC=" + MaNCC + ", TenNCC=" + TenNCC + ", DiaChi=" + DiaChi + ", SDT=" + SDT
-				+ ", TrangThai=" + TrangThai + "]";
-	}
-	
 	
 }

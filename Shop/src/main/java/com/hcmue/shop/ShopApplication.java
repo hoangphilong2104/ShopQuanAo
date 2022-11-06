@@ -2,16 +2,17 @@ package com.hcmue.shop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 @SpringBootApplication
-public class ShopApplication extends WebMvcConfigurerAdapter{
-	
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("home");
-	}
+public class ShopApplication extends SpringBootServletInitializer {
+	   @Override
+	   protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+	      return application.sources(ShopApplication.class);
+	   }
 	
 	public static void main(String[] args) {
 		SpringApplication.run(ShopApplication.class, args);
