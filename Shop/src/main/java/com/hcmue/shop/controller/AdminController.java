@@ -2,13 +2,7 @@ package com.hcmue.shop.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -103,7 +96,7 @@ public class AdminController {
 	public ModelAndView showChiTietHoaDon(Model model) {
 		List<ChiTietHoaDonModel> list = chiTietHoaDonServices.listAll();
 		model.addAttribute("listItems", list);
-		return new ModelAndView("admin/chitiethoadon/show");
+		return new ModelAndView("admin/ChiTietHoaDon/show");
 	}
 	
 	//add
@@ -152,7 +145,7 @@ public class AdminController {
 	public ModelAndView showHoaDon(Model model) {
 		List<HoaDonModel> list = hoaDonServices.listAll();
 		model.addAttribute("listItems", list);
-		return new ModelAndView("admin/hoadon/show");
+		return new ModelAndView("admin/HoaDon/show");
 	}
 	
 	//add
@@ -201,7 +194,7 @@ public class AdminController {
 	public ModelAndView showKhachHang(Model model) {
 		List<KhachHangModel> list = khachHangServices.listAll();
 		model.addAttribute("listItems", list);
-		return new ModelAndView("admin/khachhang/show");
+		return new ModelAndView("admin/KhachHang/show");
 	}
 	
 	//add

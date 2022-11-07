@@ -37,6 +37,26 @@
             localStorage.setItem('scrollpos', window.scrollY);
         };
     </script>
+    
+    <!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FB8V7RL0FT"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-FB8V7RL0FT');
+	</script>
+	
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FB8V7RL0FT"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-FB8V7RL0FT');
+	</script>
 </head>
 
 <body>
@@ -54,19 +74,19 @@
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark px-2" href="">
+                    <a class="text-dark px-2" href="https://www.facebook.com/profile.php?id=100087800941006">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a class="text-dark px-2" href="">
+                    <a class="text-dark px-2" href="https://twitter.com/tr47109468?fbclid=IwAR2RPY-d4CWJcEcAWpLioGAQ2wxEMtZNOq70zocg1lrVclqLOH_qgTRFATI">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a class="text-dark px-2" href="">
+                    <a class="text-dark px-2" href="https://www.linkedin.com/">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a class="text-dark px-2" href="">
+                    <a class="text-dark px-2" href="https://www.instagram.com/">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a class="text-dark pl-2" href="">
+                    <a class="text-dark pl-2" href="https://www.youtube.com/">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
@@ -74,18 +94,20 @@
         </div>
         <div class="row align-items-center py-3 px-xl-5">
             <div class="col-lg-3 d-none d-lg-block">
-                <a href="" class="text-decoration-none">
+                <a th:href="@{/}" class="text-decoration-none">
                     <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form th:action="@{/sanpham/search}">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" placeholder="Search for products" name="slug" required="required"/>
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
+                       		<button type="submit">
+	                            <span class="input-group-text bg-transparent text-primary">
+	                                <i class="fa fa-search"></i>
+	                            </span>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -164,8 +186,8 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto py-0">
-                            <a th:href="@{/}" class="nav-item nav-link">Home</a>
-                            <a th:href="@{/sanpham}" class="nav-item nav-link active">Shop</a>
+                            <a th:href="@{/}" class="nav-item nav-link active">Home</a>
+                            <a th:href="@{/sanpham}" class="nav-item nav-link">Shop</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
@@ -288,7 +310,23 @@
         </div>
     </div>
     <!-- Categories End -->
-
+	
+	<div align="center">
+		<img alt="" th:src="@{/static/images/adss2.gif}">
+	</div>
+	<!-- Categories Start -->
+    <div class="container-fluid pt-5" style="align-items: center;">
+        <div class="row px-xl-5 pb-3">
+			<img alt="" th:src="@{/static/images/adss1.gif}">
+			<iframe width="650" height="480" th:src="@{/static/videos/ads2.mp4}" title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+        </div>
+        <div class="row px-xl-5 pb-3">
+			<iframe width="1130" height="550" th:src="@{/static/videos/ads1.mp4}" 
+			title="YouTube video player" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+    <!-- Categories End -->
+	
 
     <!-- Vendor Start -->
     <div class="container-fluid py-5">
@@ -381,6 +419,7 @@
 	
     <!-- Template Javascript -->
     <script th:src="@{/static/js/main.js}"></script>
+    <script src="https://uhchat.net/code.php?f=4f67d7"></script>
 </body>
 
 </html>

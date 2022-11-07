@@ -45,11 +45,11 @@ public class CategoryController {
 	
 	@RequestMapping(value = "/page/{page}")
     public ModelAndView listArticlesPageByPage(@PathVariable("page") int page, ModelMap model, HttpSession session, Principal principal) {
-		if(page < 1) {
-			return new ModelAndView("redirect:/categories/page/1");
-		}else if(page > 6) {
-			return new ModelAndView("redirect:/categories/page/6");
-		}
+//		if(page < 1) {
+//			return new ModelAndView("redirect:/categories/page/1");
+//		}else if(page > 6) {
+//			return new ModelAndView("redirect:/categories/page/6");
+//		}
 		int size_cart = 0;
 		@SuppressWarnings("unchecked")
 		List<Item> cart = (List<Item>) session.getAttribute("cart");
@@ -84,11 +84,11 @@ public class CategoryController {
 	@RequestMapping(value = "/{slug}/page/{page}")
     public ModelAndView listArticlesPageByPage(@PathVariable("page") int page,@PathVariable("slug") String slug,
     									ModelMap model, HttpSession session, Principal principal) {
-		if(page < 1) {
-			return new ModelAndView("redirect:/categories/"+slug+"page/1");
-		}else if(page > 6) {
-			return new ModelAndView("redirect:/categories/"+slug+"page/6");
-		}
+//		if(page < 1) {
+//			return new ModelAndView("redirect:/categories/"+slug+"page/1");
+//		}else if(page > 6) {
+//			return new ModelAndView("redirect:/categories/"+slug+"page/6");
+//		}
 		int size_cart = 0;
 		@SuppressWarnings("unchecked")
 		List<Item> cart = (List<Item>) session.getAttribute("cart");

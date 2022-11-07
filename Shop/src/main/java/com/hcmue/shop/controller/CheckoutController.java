@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +43,9 @@ public class CheckoutController {
 	
 	@Autowired
 	private ChiTietHoaDonServices chiTietHoaDonServices;
+	
+	@Value("${url}")
+	private String url;
 	
 	public static final String SUCCESS_URL = "checkout/pay/success";
 	public static final String CANCEL_URL = "checkout/pay/cancel";
@@ -98,8 +102,8 @@ public class CheckoutController {
 			order.setIntent("sale");
 			order.setDescription("");
 			Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
-					order.getIntent(), order.getDescription(), "http://localhost:8080/" + CANCEL_URL,
-					"http://localhost:8080/" + SUCCESS_URL);
+					order.getIntent(), order.getDescription(), url + CANCEL_URL,
+					url + SUCCESS_URL);
 			for(Links link:payment.getLinks()) {
 				if(link.getRel().equals("approval_url")) {
 //					return new ModelAndView("redirect:"+link.getHref());

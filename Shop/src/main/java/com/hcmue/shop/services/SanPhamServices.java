@@ -1,6 +1,9 @@
 package com.hcmue.shop.services;
 
+import java.text.Normalizer;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,5 +81,34 @@ public class SanPhamServices implements Services<SanPhamModel>{
 		Page<SanPham> list = repo.findAllSanPhamGT(pageable,GioiTinh);
 		return list;
 	}
- 
+	
+	public Page<SanPham> search(PageRequest pageable, String s){
+		s = unAccent(s.toLowerCase());
+		s = s.replace(" ", "-");
+		Page<SanPham> list = repo.searchSanPham(pageable,s);
+		return list;
+	}
+	
+	public static String unAccent(String s) {
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(temp).replaceAll("");
+	}
+	
+	public List<String> mota(String mota){
+		List<String> motas = new ArrayList<String>();
+		boolean status = true;
+		while(status) {
+			int i = mota.indexOf("<br>");
+			if(i == -1) {
+				status = false;
+				motas.add(mota);
+			}else {
+				String temp = mota.substring(0,i);
+				motas.add(temp);
+				mota = mota.substring(i+4);
+			}
+		}
+		return motas;
+	}
 }

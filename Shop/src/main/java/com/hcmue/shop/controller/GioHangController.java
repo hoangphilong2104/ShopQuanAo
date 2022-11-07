@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,14 +47,14 @@ public class GioHangController {
 		return new ModelAndView("views/Cart");
 	}
 	
-	@RequestMapping(value = "buy/{id}", method = RequestMethod.GET)
-	public ModelAndView buy(@PathVariable("id") int id, HttpSession session,@RequestParam("url") String url) {
+	@RequestMapping(value = "buy/{id}/{amount}", method = RequestMethod.GET)
+	public ModelAndView buy(@PathVariable("id") int id, HttpSession session,@RequestParam("url") String url,@PathVariable("amount") int amount) {
 		if(url == null) {
 			return new ModelAndView("redirect:/cart");
 		}
 		if (session.getAttribute("cart") == null) {
 			List<Item> cart = new ArrayList<Item>();
-			cart.add(new Item(ser.findOne(id), 1));
+			cart.add(new Item(ser.findOne(id), amount));
 			session.setAttribute("cart", cart);
 			return new ModelAndView("redirect:/"+url);
 		} else {
@@ -61,15 +62,19 @@ public class GioHangController {
 			List<Item> cart = (List<Item>) session.getAttribute("cart");
 			int index = isExists(id, cart);
 			if (index == -1) {
-				cart.add(new Item(ser.findOne(id), 1));
+				cart.add(new Item(ser.findOne(id), amount));
 				return new ModelAndView("redirect:/"+url);
 			} else {
-				int quantity = cart.get(index).getQuantity() + 1;
+				int quantity = cart.get(index).getQuantity() + amount;
 				cart.get(index).setQuantity(quantity);
 				return new ModelAndView("redirect:/cart");
 			}
 		}
-		
+	}
+	
+	@RequestMapping(value = "buy/{id}", method = RequestMethod.GET)
+	public ModelAndView addD(@RequestParam("amount") int amount, @PathVariable("id") int id,ModelMap model) {
+		return new ModelAndView("redirect:/cart/buy/"+id+'/'+amount+"?url=cart");
 	}
 	
 	@RequestMapping(value = "add/{id}", method = RequestMethod.GET)

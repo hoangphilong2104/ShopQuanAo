@@ -37,6 +37,16 @@
             localStorage.setItem('scrollpos', window.scrollY);
         };
     </script>
+    
+    <!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FB8V7RL0FT"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+	
+	  gtag('config', 'G-FB8V7RL0FT');
+	</script>
 </head>
 
 <body>
@@ -54,19 +64,19 @@
             </div>
             <div class="col-lg-6 text-center text-lg-right">
                 <div class="d-inline-flex align-items-center">
-                    <a class="text-dark px-2" href="">
+                    <a class="text-dark px-2" href="https://www.facebook.com/profile.php?id=100087800941006">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a class="text-dark px-2" href="">
+                    <a class="text-dark px-2" href="https://twitter.com/tr47109468?fbclid=IwAR2RPY-d4CWJcEcAWpLioGAQ2wxEMtZNOq70zocg1lrVclqLOH_qgTRFATI">
                         <i class="fab fa-twitter"></i>
                     </a>
-                    <a class="text-dark px-2" href="">
+                    <a class="text-dark px-2" href="https://www.linkedin.com/">
                         <i class="fab fa-linkedin-in"></i>
                     </a>
-                    <a class="text-dark px-2" href="">
+                    <a class="text-dark px-2" href="https://www.instagram.com/">
                         <i class="fab fa-instagram"></i>
                     </a>
-                    <a class="text-dark pl-2" href="">
+                    <a class="text-dark pl-2" href="https://www.youtube.com/">
                         <i class="fab fa-youtube"></i>
                     </a>
                 </div>
@@ -79,13 +89,15 @@
                 </a>
             </div>
             <div class="col-lg-6 col-6 text-left">
-                <form action="">
+                <form th:action="@{/sanpham/search}">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for products">
+                        <input type="text" class="form-control" placeholder="Search for products" name="slug" required="required"/>
                         <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
+                       		<button type="submit">
+	                            <span class="input-group-text bg-transparent text-primary">
+	                                <i class="fa fa-search"></i>
+	                            </span>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -219,13 +231,15 @@
                 <div class="row pb-3">
                     <div class="col-12 pb-1">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <form action="">
+                            <form th:action="@{/sanpham/search}">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search by name">
+                                    <input type="text" class="form-control" placeholder="Search by name" name="slug" required="required">
                                     <div class="input-group-append">
-                                        <span class="input-group-text bg-transparent text-primary">
-                                            <i class="fa fa-search"></i>
-                                        </span>
+                                    	<button type="submit">
+	                                        <span class="input-group-text bg-transparent text-primary">
+	                                            <i class="fa fa-search"></i>
+	                                        </span>
+                                        </button>
                                     </div>
                                 </div>
                             </form>
@@ -254,28 +268,29 @@
                                 </div>
                             </div>
                             <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a th:href="@{'/cart/buy/'+${sanpham.MaSP}+'?url='+${url}+${page}}" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
+                                <a th:href="@{'/sanpham/details/'+${sanpham.MaSP}}" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
+                                <a th:href="@{'/cart/buy/'+${sanpham.MaSP}+'/1'+'?url='+${url}+${page}}" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-12 pb-1">
                         <nav aria-label="Page navigation">
                           <ul class="pagination justify-content-center mb-3">
-                            <li class="page-item">
+                            <!-- <li class="page-item">
                               <a class="page-link" th:href="|/${url}${page - 1}|" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 <span class="sr-only">Previous</span>
                               </a>
+                              </li> -->
                             	<li class="page-item" th:each="pageNumber : ${pageNumbers}">
 	                            	<a class="page-link" th:href="@{|/${url}${pageNumber}|}" th:text=${pageNumber}>2</a>
 	                            </li>
-                            <li class="page-item">
+<!--                             <li class="page-item">
                               <a class="page-link" th:href="|/${url}${page + 1}|" aria-label="Next">
                                 <span aria-hidden="true">&raquo;</span>
                                 <span class="sr-only">Next</span>
                               </a>
-                            </li>
+                            </li> -->
                           </ul>
                         </nav>
                     </div>
@@ -342,6 +357,7 @@
 	
     <!-- Template Javascript -->
     <script th:src="@{/static/js/main.js}"></script>
+    <script src="https://uhchat.net/code.php?f=4f67d7"></script>
 </body>
 
 </html>

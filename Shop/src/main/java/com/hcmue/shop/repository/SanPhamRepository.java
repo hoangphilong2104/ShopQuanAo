@@ -22,4 +22,8 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer>{
 	@Query("SELECT p FROM SanPham p WHERE p.TrangThai = true and p.GioiTinh = :GioiTinh")
 	public Page<SanPham> findAllSanPhamGT(PageRequest pageable,@Param("GioiTinh") String gioiTinh);
 	
+	//@Query("SELECT p FROM SanPham p WHERE p.slug LIKE %:s%")
+	@Query(value ="SELECT * FROM sanpham WHERE slug LIKE %:s% ",nativeQuery = true)
+	public Page<SanPham> searchSanPham(PageRequest pageable,@Param("s") String s);
+	
 }
