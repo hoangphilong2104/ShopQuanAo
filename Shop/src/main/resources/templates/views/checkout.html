@@ -39,13 +39,13 @@
     </script>
     
     <!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FB8V7RL0FT"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-D41QT7B4F9"></script>
 	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-	
-	  gtag('config', 'G-FB8V7RL0FT');
+		 window.dataLayer = window.dataLayer || [];
+		 function gtag(){dataLayer.push(arguments);}
+		 gtag('js', new Date());
+		
+		 gtag('config', 'G-D41QT7B4F9');
 	</script>
 </head>
 
@@ -294,6 +294,15 @@
 	                    <div class="card-footer border-secondary bg-transparent">
 	                        <button th:if="${total == 0}" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" type="submit" disabled="disabled">Place Order</button>
 	                        <button th:unless="${total == 0}" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" type="submit" >Place Order</button>
+	                    </div>
+	                </div>
+	                <div class="card border-secondary mb-5">
+	                    <div class="card-header bg-secondary border-0">
+	                        <h4 class="font-weight-semi-bold m-0">Direct payment</h4>
+	                    </div>
+	                    <div class="card-footer border-secondary bg-transparent">
+	                        <button th:if="${total == 0}" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" type="button" disabled="disabled"><a>Place Order</a></button>
+	                        <button th:unless="${total == 0}" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" type="button" ><a th:href="@{/checkout/pay/direct}">Place Order</a></button>
 	                    </div>
 	                </div>
 	            </div>

@@ -127,7 +127,6 @@ public class CheckoutController {
 		List<Item> cart = (List<Item>) session.getAttribute("cart");
 		if(cart != null) {
 			size_cart = cart.size();
-			
 		}
 		model.addAttribute("size_cart",size_cart);
 		if(principal != null) {
@@ -138,32 +137,50 @@ public class CheckoutController {
     }
 
     @GetMapping(value = "/pay/success")
-    public ModelAndView successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId,HttpServletRequest request, ModelMap model, HttpSession session,Principal principal) {
-        try {
-            Payment payment = service.executePayment(paymentId, payerId);
-            System.out.println(payment.toJSON());
+    public ModelAndView successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId,HttpServletRequest request,ModelMap model, HttpSession session,Principal principal) {
+//        try {  
+//            Payment payment = service.executePayment(paymentId, payerId);
+//            System.out.println(payment.toJSON());
             String username = principal.getName();
 			model.addAttribute("username",username);
             processBillAndCart(username,session);
-            if (payment.getState().equals("approved")) {
-            	String error = "successfully.png";
-            	model.addAttribute("error",error);
+//            if (payment.getState().equals("approved")) {
             	int size_cart = 0;
         		@SuppressWarnings("unchecked")
         		List<Item> cart = (List<Item>) session.getAttribute("cart");
         		if(cart != null) {
         			size_cart = cart.size();
-        			
         		}
+        		String error = "successfully.png";
+            	model.addAttribute("error",error);
         		model.addAttribute("size_cart",size_cart);
                 return new ModelAndView("views/404");
-            }
-        } catch (PayPalRESTException e) {
-        	System.out.println(e.getMessage());
-        }
-        return new ModelAndView("redirect:/checkout");
+//            }
+//        } catch (PayPalRESTException e) {
+//        	System.out.println(e.getMessage());
+//        }
+//        return new ModelAndView("views/404");
     }
-
+    
+    @GetMapping(value = "/pay/direct")
+    public ModelAndView directPay(HttpServletRequest request, ModelMap model, HttpSession session,Principal principal) {
+       
+		String username = principal.getName();
+		model.addAttribute("username",username);
+		processBillAndCart(username,session);
+    	String error = "successfully.png";
+    	model.addAttribute("error",error);
+    	int size_cart = 0;
+		@SuppressWarnings("unchecked")
+		List<Item> cart = (List<Item>) session.getAttribute("cart");
+		if(cart != null) {
+			size_cart = cart.size();
+			
+		}
+		model.addAttribute("size_cart",size_cart);
+        return new ModelAndView("views/404");
+    }
+    
 	private void processBillAndCart(String username,HttpSession session) {
 		KhachHangModel account = khachHangServices.findOne(username);
 		HoaDonModel hoaDon = new HoaDonModel();

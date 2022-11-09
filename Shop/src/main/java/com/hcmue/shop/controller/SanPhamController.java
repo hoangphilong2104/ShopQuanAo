@@ -121,7 +121,8 @@ public class SanPhamController {
         modelAndView.addObject("urlpage", urlpage);
         modelAndView.addObject("activeArticleList", true);
         modelAndView.addObject("articleList", productPage.getContent());
-        model.addAttribute("url","sanpham/page/");
+        model.addAttribute("usearch",slug);
+        model.addAttribute("url","sanpham/search/page/");
         return modelAndView;
 	}
 	

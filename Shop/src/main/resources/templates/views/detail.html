@@ -27,6 +27,10 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link th:href="@{/static/css/style.css}" rel="stylesheet">
     
+    <link rel="canonical" href="/web/tweet-button">
+  
+    <link rel="me" href="https://twitter.com/twitterdev">
+
     <script>
         document.addEventListener("DOMContentLoaded", function(event) { 
             var scrollpos = localStorage.getItem('scrollpos');
@@ -39,13 +43,13 @@
     </script>
     
     <!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-FB8V7RL0FT"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-D41QT7B4F9"></script>
 	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-	
-	  gtag('config', 'G-FB8V7RL0FT');
+		 window.dataLayer = window.dataLayer || [];
+		 function gtag(){dataLayer.push(arguments);}
+		 gtag('js', new Date());
+		
+		 gtag('config', 'G-D41QT7B4F9');
 	</script>
 </head>
 
@@ -333,6 +337,13 @@
 						th:data-href="@{${urlFinal}+'sanpham/details/'+${sanpham.MaSP}}" 
 						data-layout="button_count">
 					</div>
+					&nbsp;&nbsp;&nbsp;
+					<a class="twitter-share-button"
+					  href="https://twitter.com/intent/tweet?text=http://shopquanao-env.eba-pq5pdwyg.us-east-2.elasticbeanstalk.com/sanpham/details/1"
+					  data-size="large">
+					  <i class="fab fa-twitter"></i>
+					</a>
+
                 </div>
             </div>
         </div>
